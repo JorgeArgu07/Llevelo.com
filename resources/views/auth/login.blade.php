@@ -16,19 +16,35 @@
 
 <head>
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<style>
+<!doctype html>
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 
-</style>
+    <!-- CSRF Token -->
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+
+    <title>{{ config('app.name', 'Laravel') }}</title>
+
+    <!-- Scripts -->
+    <script src="{{ asset('js/app.js') }}" defer></script>
+
+    <!-- Fonts -->
+    <link rel="dns-prefetch" href="//fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
+
+    <!-- Styles -->
+    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 </head>
 
-<body style=  "background-size: 100%; background-image:url('{{ asset('img/fondo.png') }}');position:relative; ">
+<body style=  "background-size: 100%; background-image:url('{{ asset('img/fondooficial.png') }}');position:relative; ">
 <div class="vl"></div>
-<br><br><br>
-<div class="vl" style=" border-left: 2px solid white;height: 450px; position: absolute;  left: 50%;" ></div>
+
 
 <div class="vl"></div>
 
-<div class="container" style="height: 100px;">
+<div class="container" style="height: 100%;">
 <br><br><br><br>  
 <aside class="col-sm-1">
 
@@ -39,9 +55,9 @@
 
 <div class="row ">
 	<aside class="col-sm-4">
-<div class="card">
-<article class="card-body">
-<a>Los coronavirus son una extensa familia de virus que pueden causar enfermedades tanto en animales como en humanos. En los humanos, se sabe que varios coronavirus causan infecciones respiratorias que pueden ir desde el resfriado común hasta enfermedades más graves como el síndrome respiratorio de Oriente Medio (MERS) y el síndrome respiratorio agudo severo (SRAS). El coronavirus que se ha descubierto más recientemente causa la enfermedad por coronavirus COVID-19.</a>
+<div>
+
+
 
 
 	 <form>
@@ -58,7 +74,7 @@
     </div> 
                                                          
 </form>
-</article>
+
 </div> 
 
 	</aside>
@@ -68,11 +84,11 @@
 
 
 	</aside> 
-	<aside class="col-3">
+	<aside class="col-5">
     <div class="row">
-<div class="card">
+<div class="card" style="background-color: rgb(255, 251, 187,0);opacity: 80%; border-radius:5%">
 <center>
-<img src="img/logo.png" width="40%" height="40%"></img>
+<img src="img/login.png" width="60%">
 </center>
 <article class="card-body">
 <form method="POST" action="{{ route('login') }}">
@@ -84,7 +100,7 @@
                         
 
                             <div class="col-md-9">
-                             <input id="email" type="email" class="form-control  @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus>
+                             <input id="email" type="email" placeholder="Correo electronico" class="form-control  @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus>  
                                 @error('email')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
@@ -97,7 +113,7 @@
                             <label for="password" class="col-md-2 col-form-label text-md-right"><i class="fas fa-key"></i></label>
 
                             <div class="col-md-9">
-                                <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="current-password">
+                                <input id="password" type="password" placeholder="Contraseña" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="current-password">
 
                                 @error('password')
                                     <span class="invalid-feedback" role="alert">
@@ -115,7 +131,7 @@
 
                         <div class="form-group row mb-0">
                             <div class="col-md-8 offset-md-4 ">
-                                <button type="submit" class="btn btn-primary ">
+                                <button type="submit" class="btn btn-lg btn-primary">
                                     {{ __('Ingresar') }}
                                 </button>
 
@@ -129,7 +145,7 @@
                         </div>
                         <br><br>
                             <center>
-                            <a>¿No estas registrado?, Registrate aqui.</a>
+                            <a>¿No estas registrado?,</a><a href="http://llevelo.com/register">Registrate aqui.</a>
                             </center>
                             
                     </form>

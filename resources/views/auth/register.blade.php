@@ -1,14 +1,76 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card">
-                <div class="card-header">{{ __('Register') }}</div>
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<link href="//netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//netdna.bootstrapcdn.com/bootstrap/3.1.0/js/bootstrap.min.js"></script>
+<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
 
-                <div class="card-body">
-                    <form method="POST" action="{{ route('register') }}">
+
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.8/css/all.css">
+
+
+
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+
+</style>
+</head>
+<body style=  "background-size: 100%; background-image:url('{{ asset('img/fondooficial.png') }}');position:relative; ">
+
+<div class="vl"></div>
+
+<div class="container" style="height: 100%;">
+<br><br><br><br>  
+<aside class="col-sm-1">
+
+
+
+
+	</aside> 
+
+<div class="row ">
+	<aside class="col-sm-4">
+<div>
+
+
+
+
+	 <form>
+    <div class="form-group">
+    
+    </div> 
+    <div class="form-group">
+    	
+    </div> 
+    <div class="form-group"> 
+    <div class="checkbox">
+    
+    </div> 
+    </div> 
+                                                         
+</form>
+
+</div> 
+
+	</aside>
+	<aside class="col-sm-3">
+
+
+
+
+	</aside> 
+	<aside class="col-5">
+    <div class="row">
+<div class="card" style="background-color: rgb(255, 251, 187,0);opacity: 80%; border-radius:5%">
+<center>
+<img src="img/login.png" width="60%" background-attachment="fixed">
+</center>
+<article class="card-body">
+<form method="POST" action="{{ route('register') }}">
                         @csrf
 
                         <div class="form-group row">
@@ -69,9 +131,13 @@
                             </div>
                         </div>
                     </form>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
+</article>
+</div> 
+	</aside> 
+</div> 
+
+</div> 
+
+    
+</body>
 @endsection
