@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -13,6 +14,11 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+// Route::get('/', function () {
+// 	return view('welcome');
+// });
+
+Route::get('/','Index@inicio');
+// Route::get('/buscar','Index@buscar');
+Route::get('/producto','Index@productos');
+Route::get('/categorias','Index@categorias');
