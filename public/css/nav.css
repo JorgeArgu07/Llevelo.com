@@ -1,0 +1,33 @@
+.letras
+{
+	margin-left: 50px; 
+}
+.modulos
+{
+	margin-left: 35px;
+	margin-top: -1000px;
+	margin-right: ;
+}
+#ulu
+{
+	margin-top: 20px;
+}
+footer
+{
+	margin-top: 20px;
+	background-color: black;
+
+}
+body
+{
+	background-image: url('/img/fondo.jpg');
+	background-attachment: fixed;
+	background-position: center;
+	background-size: 100% 100%;
+}
+.iconos
+{
+	width: 20px;
+	height: 20px;
+	margin-right: 10px;
+}
