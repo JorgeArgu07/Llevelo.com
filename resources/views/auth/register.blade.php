@@ -25,15 +25,10 @@
 
 <div class="container" style="height: 100%;">
 <br><br><br><br>  
-<aside class="col-sm-1">
 
-
-
-
-	</aside> 
 
 <div class="row ">
-	<aside class="col-sm-4">
+	<aside class="col-sm-">
 <div>
 
 
@@ -67,7 +62,7 @@
     <div class="row">
 <div class="card" style="background-color: rgb(255, 251, 187,0);opacity: 80%; border-radius:5%">
 <center>
-<img src="img/login.png" width="60%" background-attachment="fixed">
+<img src="img/login.png" width="40%" background-attachment="fixed">
 </center>
 <article class="card-body">
 <form method="POST" action="{{ route('register') }}">
