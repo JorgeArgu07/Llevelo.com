@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -12,6 +13,7 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
+
 
 Route::get('/', function () {
     return view('welcome');
@@ -25,3 +27,11 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 Route::get('/carrito', "PagoController@Pago");
 
+// Route::get('/', function () {
+// 	return view('welcome');
+// });
+
+Route::get('/','Index@inicio');
+// Route::get('/buscar','Index@buscar');
+Route::get('/producto','Index@productos');
+Route::get('/categorias','Index@categorias');

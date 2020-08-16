@@ -89,11 +89,15 @@
                              
                                 <div class="lib-header-seperator"></div>
                             </div>
+                            <h3 class="float-right">Cantidad</h3>
                             <div class="col-md-12">
+                            
             <input type="button" value="-" class="float-right">
         <input type="text" name="casilla" value="1" style="width:20px" class="float-right">
-        <input type="button" value="+" class="float-right">    
+        <input type="button" value="+" class="float-right">   
+        
         </div>
+<h3 class="float-right">Enviar a </h3>
 
        
                         </div>
