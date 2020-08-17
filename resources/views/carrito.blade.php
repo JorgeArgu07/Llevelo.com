@@ -70,11 +70,14 @@
                             </div>
                             <div class="lib-row lib-desc">
                                 Lorem ipsum dolor Lorem ipsum dolor Lorem ipsum dolor Lorem ipsum dolor Lorem ipsum dolor Lorem ipsum dolor
+                        
                             </div>
-                            <h4>Cantidad Total</h4>
-              
-                    <h3>{{$pagos}} MXN</h3>
+                            <h4> ${{$personas[0]->subtotal}} MXN</h4>
+                    
                         </div>
+                        
+                        <h3 class="float-left">Cantidad total <br>
+                        ${{$pagos}} MXN</h3>
                     </div>
                 </div>
             </div>
@@ -97,7 +100,7 @@
         <input type="button" value="+" class="float-right">   
         
         </div>
-<h3 class="float-right">Enviar a </h3>
+<h3 class="float-right">Enviar a <br> {{$p[0]->nombre}}</h3>
 
        
                         </div>
