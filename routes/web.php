@@ -26,6 +26,17 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 //DIEGO
 Route::get('/carrito', "PagoController@Pago");
+Route::get('/prueba', "PagoController@Mostrar");
+Route::post('/productoaeliminar','PagoController@productoaeliminar');
+Route::post('/eliminarproducto','PagoController@eliminarproducto');
+Route::post('/eliminarcarrito','PagoController@eliminarcarrito');
+Route::get('direccion', function(){
+    return view('direccion');
+});
+Route::post('/agregarmarca','PagoController@agregar');
+Route::post('/actualizarcantidad','PagoController@actualizar');
+
+ 
 
 
 Auth::routes();
