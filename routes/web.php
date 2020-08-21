@@ -19,6 +19,9 @@ use Illuminate\Support\Facades\Route;
 // });
 
 Route::get('/','Index@inicio');
-// Route::get('/buscar','Index@buscar');
-Route::get('/producto','Index@productos');
-Route::get('/categorias','Index@categorias');
+// Route::post('/categorias','CategoriasController@ViewCategorias');
+Route::get('/categorias','CategoriasController@ViewCategorias');
+
+Route::get('/producto','ProductosController@ViewProductos');
+
+// Route::get('/productos','CategoriasController@ViewProductos');
