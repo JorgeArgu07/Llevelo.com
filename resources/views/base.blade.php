@@ -25,6 +25,17 @@
 	<script src="https://kit.fontawesome.com/d4ba555f74.js" crossorigin="anonymous"></script>
 
 	@yield('css')
+	<style>
+	#footer {
+  		position: absolute;
+ 		right: 0;
+  		bottom: 0;
+  		left: 0;
+  		padding: 1rem;
+  		background-color: #efefef;
+  		text-align: center;
+	}
+	</style>
 	<title>Llevelo</title>
 </head>
 <body >
@@ -49,7 +60,7 @@
 			<ul class="navbar-nav mr-auto" id="ulu">
 				<li class="nav-item dropdown">
 					<a style="margin-left: 20px;" class="nav-link dropdown-toggle" href="" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-						<img src="/img/lista.png" alt="categorias" width="20" height="20">
+						<i class="fas fa-list-ul"></i>
 						CATEGORIAS
 					</a>
 					<div class="dropdown-menu " aria-labelledby="navbarDropdown">
@@ -96,16 +107,22 @@
 				</li>
 				<li class="nav-item">
 					<a style="margin-left: 20px;" class="nav-link" href="#">
-						<img src="/img/estrella.png" alt="" width="20" height="20">
+						<i class="fas fa-star"></i>
 						DESTACADOS
 					</a>
 				</li>
 {{-- 				<li class="nav-item">
 					<a class="nav-link" href="#">
-						<img src="/img/corazon.png" alt="" width="20" height="20">
+					
 						FAVORITOS
 					</a>
 				</li> --}}
+				<li class="nav-item">
+					<a class="nav-link" href="/ProductosPublicados">
+						<i class="fas fa-archive"></i>
+						ADMINISTRADOR DE PRODUCTOS
+					</a>
+				</li>
 				@section('modulos')
 				@show
 			</ul>
@@ -114,10 +131,11 @@
 				<input class="form-control mr-sm-2 rounded-pill " type="search" placeholder="Buscar" aria-label="Search">
 				<button class="ulu btn btn-warning rounded-pill" type="submit">Buscar</button>
 			</form>
+		
  --}}			<ul class="navbar-nav" id="ulu">
 				<li class="nav-link">
 					<a class="nav-link" href="#">
-						<img src="/img/carrito.png" alt="carrito" width="20" height="20">
+						<i class="fas fa-shopping-cart"></i>
 						CARRITO
 					</a>
 				</li>
@@ -131,13 +149,13 @@
 @show
 
 
-<footer class="navbar navbar-light bg-light" style="text-align: center;">
+<!-- <footer id="footer" class="navbar navbar-light bg-light" style="text-align: center;">
 	Copyright &copy; 2012-2013
-</footer>
-{{-- <footer class="footer mt-auto py-3">
+</footer>  -->
+<!-- <footer class="footer mt-auto py-3">
 	<div class="container">
 		<span class="text-muted">Place sticky footer content here.</span>
 	</div>
-</footer> --}}
+</footer> -->
 </body>
 </html>
