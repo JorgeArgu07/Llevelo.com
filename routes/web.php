@@ -22,6 +22,7 @@ Route::post('/setProducto', 'ProductoController@setProducto');
 Route::post('setEstadoProducto','ProductoController@setEstadoProducto');
 Route::post('/updateProducto','ProductoController@updateProducto');
 Route::post('/ModificarProducto', 'ProductoController@viewModificarProducto');
+Route::get('/buscarProducto', 'ProductoController@buscarProducto');
 // Route::get('/', function () {
 // 	return view('welcome');
 // });

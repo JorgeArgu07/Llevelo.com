@@ -87,7 +87,7 @@
 				<input id="ulu" class="form-control mr-sm-2 rounded-pill " type="search" placeholder="Buscar" aria-label="Search">
 				<button id="ulu" class="btn btn-outline-warning rounded-pill" type="submit">Buscar</button>
 			</form>
-			<ul class="navbar-nav" id="ulu">
+			
 				<li class="nav-link">
 					<a class="nav-link" href="#">
 						<img src="/img/carrito.png" alt="carrito" width="20" height="20">
