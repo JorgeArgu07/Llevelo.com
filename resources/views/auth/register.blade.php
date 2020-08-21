@@ -75,7 +75,6 @@ body {
 	top: 1px;
 }
 .login-form .btn, .login-form .btn:active {        
-
 }
 .login-form .btn:hover, .login-form .btn:focus {
 	background: #50b8b3 !important;
@@ -158,7 +157,6 @@ body {
 	top: 1px;
 }
 .login-form .btn, .login-form .btn:active {        
-
 }
 .login-form .btn:hover, .login-form .btn:focus {
 	background: #50b8b3 !important;

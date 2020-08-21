@@ -16,5 +16,9 @@ class Producto extends Model
     public function persona(){
         return $this->belongsTo('App/Persona', 'id_persona');
     }
+    public function producto(){
+        return $this->hasMany('App/CarritoProducto', 'id_producto');
+    }
+
 
 }

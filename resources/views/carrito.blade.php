@@ -1,5 +1,23 @@
 @extends('templates.master')
 @section('content')
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<link rel="icon" type="image/png" href="/img/log.ico">
+	<script src="/js/bootstrap.min.js"></script>
+	<script src="/js/jquery-3.5.1.slim.min.js"></script>
+	<script src="/js/popper.min.js"></script>
+	<script src="/js/bootstrap.js"></script>
+	<link rel="stylesheet" type="text/css" href="/css/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="/css/nav.css">
+	<link rel="image" type="image/png" href="/img/fondo.jpg">
+	@yield('css')
+	<title>Llevelo</title>
+</head>
+<body >
 <div class="col-12 nav-link border-bottom" style="background-color: #f5f5f5 ;">
 	<div class="col-12"style="text-align: right; ">
 		
@@ -7,8 +25,9 @@
 
 </ul>
 
+<!-- Right Side Of Navbar -->
 <ul class="navbar-nav ml-auto">
-	
+	<!-- Authentication Links -->
 	@guest
 		<li class="nav-item">
 			<a class="nav-link" href="{{ route('login') }}">{{ __('Iniciar/Registrate') }}</a>
@@ -101,23 +120,21 @@
 
 @show
 
+<footer class="navbar fixed-bottom navbar-light bg-light">
+	<div class="content">
+		Este es el Footer
+	</div>
+</footer>
+{{-- <footer class="footer mt-auto py-3">
+	<div class="container">
+		<span class="text-muted">Place sticky footer content here.</span>
+	</div>
+</footer> --}}
 
 @yield('javascript')
-</head>
 
-    <style type="text/css">
-        .results tr[visible='false'],
-        .no-result {
-            display: none;
-        }
-        .results tr[visible='true'] {
-            display: table-row;
-        }
-        .counter {
-            padding: 8px;
-            color: #ccc;
-        }
-    </style>
+</body>
+</html>
    
       @csrf    
 <div class="container">    
@@ -132,20 +149,16 @@
   <tbody>
     @foreach($personas as $producto)
     <tr>
-    <input type="hidden" class="id" value="{{$producto->id}}" name="ids">
+    <input type="hidden" class="id" value="{{$producto->id}}" name="ids"> 
     <th><button type="button" class="btn btn-primary btn-eliminar" id="eliminar" data-toggle="modal" data-target="#exampleModalLong" style=" background-color: red; border: 0px;"><i class="far fa-trash-alt" style="color: white;"></i></th>
-      <th> <img class="lib-img-show" src="img/nike.png" style="width:150px"> </th>
-      <th scope="col" style="width:1000px">Lorem ipsum dolor Lorem 
-      ipsum dolor Lorem ipsum dolor 
-      Lorem ipsum dolor Lorem ipsum dolor Lorem ipsum dolor
-      Lorem ipsum dolor Lorem 
-      ipsum dolor Lorem ipsum dolor <br>
-      <h4> ${{$producto->total}} MXN</h4> </div>
+    <th> <img class="lib-img-show" src="img/{{$producto->ruta_img}}" value="{{$producto->ruta_img}}" style="width:150px"> </th>
+      <th scope="col" style="width:1000px"><p>{{$producto->detalles}}</p> <br>
+     <h4> ${{$producto->total}} MXN</h4> </div>
        </th>
      
       
-      <td style="width:800px"> <input style="height:35px" type="number" value="{{$producto->cantidad}}" class="float-right cantidad" min="1" max="10" name="cantidad" >   </td>
-     <td><button  type="button" id="editar" class="btn btn-warning float-right btn-editar cantidad" href="#exampleModalCenter"style="height:35px" ><i class="fas fa-redo" style="color: white; "></i></i></button>           </td>
+     <td style="width:800px"> <input style="height:35px" type="number" value="{{$producto->cantidad}}" class="float-right cantidad" min="1" max="10" name="productos" >   </td>
+     <td><button  type="button" id="editar" name="editar" class="btn btn-warning float-right btn-editar cantidad" href="#exampleModalCenter"style="height:35px" ><i class="fas fa-redo" style="color: white; "></i></i></button>           </td>
      <td style="width:800px">
 </td>
     </div>
@@ -209,8 +222,10 @@
                 var token = $('input[name=_token]').val();
                 var id = $(this).parent().parent().find('.id').val();
                 var cantidad = $(this).parent().parent().find('.cantidad').val();
+              
                 console.log(id);
-                console.log(cantidad)
+              
+                
                 $.ajax({
                     url: "/actualizarcantidad",
                     type: 'POST',
@@ -246,20 +261,23 @@
                                 var token = $("input[name='_token']").val();
                                 var id = $(this).parent().parent().find('.id').val();
                                 var cantidad = $('.cantidad').val();
+                               
                                 var load = $('#guardar');
-                                console.log(cantidad + id);
+                                console.log(productos + id);
                                 load.html('<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>');
+                                
+                                 console.log(productos);
                                 $.ajax({
                                     url: "/actualizarcantidad",
                                     type: 'POST',
                                     datatype: 'json',
                                     data: {
                                         id: id,
-                                        cantidad: cantidad,
+                    
                                         _token: token
                                     },
                                     success: function (response) {
-                                        console.log(cantidad);
+                                      
                                         location.href='/carrito';
                             
                                     }
@@ -271,6 +289,7 @@
                                 var load = $('#eliminar');
                                 var token = $('input[name=_token]').val();
                                    var id = $(this).parent().parent().find('.id').val();
+                                   
                                 console.log(id);
                                 console.log(id);
                                 $.ajax({

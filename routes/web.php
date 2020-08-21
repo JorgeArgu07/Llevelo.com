@@ -1,3 +1,4 @@
+  
 <?php
 
 use Illuminate\Support\Facades\Route;
@@ -64,4 +65,3 @@ Route::get('/','Index@inicio');
 // Route::get('/buscar','Index@buscar');
 Route::get('/producto','Index@productos');
 Route::get('/categorias','Index@categorias');
-

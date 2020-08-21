@@ -83,22 +83,19 @@ class PagoController extends Controller
 
 
 
-        function actualizar(Request $request){
-            $editar = CarritoProducto::find($request->id);
-            $editar->cantidad = $request->cantidad;
-            $editar->save();
-            #\Session::flash('eliminado',$editar);
-            #return \Redirect::back();  
-            return $editar;
-           
-    
+           function actualizar(Request $request){
+           $editar = CarritoProducto::find($request->id);
+           $editar->cantidad = $request->cantidad;
+           $editar->save();
+           \Session::flash('eliminado',$editar);
+           return $editar;
+           $editar = new CarritoProducto();
+          
         }
         function editar(Request $request){
             $edit = CarritoProducto::all();
             return $edit;
         }
-
-
 
 
 
@@ -124,15 +121,19 @@ class PagoController extends Controller
        
         function carrito(Request $request){
         
-
+            $personas = DB::table('carrito_producto')
+            ->select('productos.ruta_img' ,'carrito_producto.id','carrito_producto.total','carrito_producto.cantidad' ,'productos.detalles')
+            ->join('productos', 'productos.id', '=', 'carrito_producto.id_producto')
+            ->get();
             $ventas = DB::table('carrito_producto')
             ->select(DB::raw('sum(total * cantidad) as ventas'))
             ->get();
             $pagos = CarritoProducto::sum('total');
             $p = Persona::all();
-            $persona = CarritoProducto::where('id', $request->id)->with('p')->get();
-            $personas = CarritoProducto::all();
-           return view('carrito')->with(compact("pagos", "personas","ventas","p")); 
+            $persona = CarritoProducto::where('id', $request->id)->get();
+           # $personas = CarritoProducto::all();
+            
+           return view('carrito')->with(compact("pagos", "personas","ventas")); 
         
            #$persona = DB::table('users')
             #->select(DB::raw( 'sum( total * cantidad) as T'),'users.id as id','carrito_producto.total as total','carrito_producto.cantidad as cantidad'  )
@@ -154,6 +155,11 @@ return view('prueba', compact("productos"));
 
 }
 function añadiralcarro(Request $request){
+  $persona = DB::table('carrito_producto')
+  ->select('productos.ruta_img')
+  ->join('productos', 'productos.id', '=', 'carrito_producto.id_producto')
+  ->get();
+  return view('carrito', compact('persona'));
 
 }
 
