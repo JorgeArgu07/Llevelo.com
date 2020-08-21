@@ -43,6 +43,10 @@ Route::post('/eliminarproducto','PagoController@eliminarproducto');
 Route::post('/eliminarcarrito','PagoController@eliminarcarrito');
 
 Route::post('/agregarmarca','PagoController@agregar');
+Route::post('/actualizarcantidad','PagoController@actualizar');
+Route::post('/editar','PagoController@editar');
+
+ 
 
 route::get('/productos', 'PagoController@Productos');
  
