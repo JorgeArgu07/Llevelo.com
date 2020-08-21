@@ -16,7 +16,7 @@
 	@else
 		<li class="nav-item dropdown">
 			<a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-				{{ Auth::user()->name }} <span class="caret"></span>
+				{{ Auth::user()->user }} <span class="caret"></span>
 			</a>
 
 			<div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
@@ -119,186 +119,115 @@
         }
     </style>
    
-      @csrf      
-<div class="container">
-<div class="card" style="width:1100px;">
-<div class="card-body">
-<h3 class="card-title">Carrito</h3>
-</div>
-</div>
-@if(($personas && $pagos && $p))
-
+      @csrf    
+<div class="container">    
 
 <div class="card" style="width:1100px;">
 <div class="card-body">
-<br>
-
-<div class="card-group">
-<input type="hidden" id="" value="" class="id">
-<div class="row row-margin-bottom">
-            <div class="col-md-5 no-padding lib-item" data-category="view">
-                <div class="lib-panel">
-                    <div class="row box-shadow">
-                        <div class="col-md-6">
-                        <td>
-						@foreach($personas as $producto)
-						<input type="hidden" class="id" value="{{$producto->id}}" name="ids">
-                        <button type="button" class="btn btn-primary btn-eliminar" id="eliminar" data-toggle="modal" data-target="#exampleModalLong" style=" background-color: red; border: 0px;"><i class="far fa-trash-alt" style="color: white;"></i>
-                        </button>
-                        </td>
-						@endforeach
-                            <img class="lib-img-show" src="img/nike.png" style="width:150px">
-                        </div>
-                        <div class="col-md-6">
-                            <div class="lib-row lib-header">
-                                Example library
-                                <div class="lib-header-seperator"></div>
-                            </div>
-                            <div class="lib-row lib-desc">
-                                Lorem ipsum dolor Lorem ipsum dolor Lorem ipsum dolor Lorem ipsum dolor Lorem ipsum dolor Lorem ipsum dolor
-                        
-                            </div>
-                            <h4> ${{$personas[0]->total}} MXN</h4> </div>
-                        <h3 class="col-md-6">Cantidad total <br>
-						@foreach($ventas as $venta)
-						${{$venta->ventas}}MXN
-						@endforeach
-                    </div>
-                </div>
-              
-            </div>
-            <div class="col-md-1"></div>
-            <div class="col-md-5 no-padding lib-item" data-category="ui">
-                <div class="lib-panel">
-                    <div class="row box-shadow">
-                        <div class="col-md-6">
-                        </div>
-                        <div class="col-md-6">
-                            <div class="lib-row lib-header">
-                             
-                                <div class="lib-header-seperator"></div>
-                            </div>
-                            <h3 class="float-right">Cantidad</h3>
-                            <div class="col-md-12">
-                            
-							@foreach($personas as $ven)
-                            <input style="height:35px" type="number" value="{{$ven->cantidad}}" class="float-right cantidad" min="1" max="10" name="cantidad" >   
-                            <button  type="button" id="guardar" class="btn btn-warning float-right guardar"style="height:35px" ><i class="fas fa-redo" style="color: white; "></i></i></button>                   
-                            <br> <br><br><br> 
-							
-							@endforeach
-                            
-
-        </div>
-        <div>
-        
-<h5 class="float-right">Enviar a <br> <th>{{$p[0]->nombre}}</th>
-            <th>{{$p[0]->apellidoP}}</th>
-            <th>{{$p[0]->apellidoM}}</th> 
-            <th>{{$p[0]->colonia}}</th>
-            <th>{{$p[0]->calle}}</th>
-            <th>{{$p[0]->numero_casa}}</th> 
-            </h5>
- <button type="button" class="btn btn-primary float-right">Confirmar </button>
-<div>
-                        </div>
-                    </div>
-                </div>
-                <button type="button"  id="eliminar"  class="btn btn-primary eliminar" style=" background-color: red; border: 0px;">Vaciar</button>
-            </div>
-           
-          
-            <form method="POST" action="carrito">
-			
-          
-<div class="modal fade" id="exampleModalLong" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLongTitle">Eliminar producto</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        ¿Esta seguro que quiere eliminar el producto?
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-        <button type="button" id="eliminado" class="btn btn-primary btn-eliminado btn-generico">Confirmar</button>
+<h3 class="card-title">Carrito</h3>           
+@if(($personas && $pagos))
+<div class="card" style="width: 100%;" id="tabla1">
+        <table class="table" >
+ 
+  <tbody>
+    @foreach($personas as $producto)
+    <tr>
+    <input type="hidden" class="id" value="{{$producto->id}}" name="ids">
+    <th><button type="button" class="btn btn-primary btn-eliminar" id="eliminar" data-toggle="modal" data-target="#exampleModalLong" style=" background-color: red; border: 0px;"><i class="far fa-trash-alt" style="color: white;"></i></th>
+      <th> <img class="lib-img-show" src="img/nike.png" style="width:150px"> </th>
+      <th scope="col" style="width:1000px">Lorem ipsum dolor Lorem 
+      ipsum dolor Lorem ipsum dolor 
+      Lorem ipsum dolor Lorem ipsum dolor Lorem ipsum dolor
+      Lorem ipsum dolor Lorem 
+      ipsum dolor Lorem ipsum dolor <br>
+      <h4> ${{$producto->total}} MXN</h4> </div>
+       </th>
+     
       
-	  </div>
+      <td style="width:800px"> <input style="height:35px" type="number" value="{{$producto->cantidad}}" class="float-right cantidad" min="1" max="10" name="cantidad" >   </td>
+     <td><button  type="button" id="editar" class="btn btn-warning float-right btn-editar cantidad" href="#exampleModalCenter"style="height:35px" ><i class="fas fa-redo" style="color: white; "></i></i></button>           </td>
+     <td style="width:800px">
+</td>
     </div>
-  </div>
+
+    
+    </tr>
+    @endforeach
+  </tbody>
+</table>
+<h3 class="col-md-6">Cantidad total <br>
+@foreach ($ventas as $venta)
+						<h5 class="col-md-6">${{$venta->ventas}}MXN</h5>
+@endforeach
+
+    </div>
+    <center>
+    <button type="button"  id="eliminar"  class="btn btn-primary eliminar" style=" background-color: red; border: 0px;">Vaciar</button>
+<center>
+
+
 </div>
-@else
-			<h5>No hay productos </h5>
-@endif
 
-@section('javascript')
-    <script type="text/javascript">
-        $(document).ready(function() {
-			 //Guarda equipo editado
-			 $("#guardar").click(function () {
-                    var token = $("input[name='_token']").val();
-					var id = $(this).parent().parent().find('.id').val();
-                    var cantidad = $('.cantidad').val();
-                    var load = $('#guardar');
-					console.log(cantidad);
-					
-                    load.html('<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>');
-                    $.ajax({
-                        url: "/actualizarcantidad",
-                        type: 'POST',
-                        datatype: 'json',
-                        data: {
-                            id: id,
-                            cantidad: cantidad,
-                            _token: token
-                        },
-                        success: function (response) {
-							console.log(cantidad);
-                            location.href='/carrito';
-				
-                        }
-                    });
-                });
-          
+</div>
+
+       
+<form method="POST" action="carrito">
+            <div class="modal fade" id="exampleModalLong" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+              <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLongTitle">Eliminar producto</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                    </button>
+                  </div>
+                  <div class="modal-body">
+                    ¿Esta seguro que quiere eliminar el producto?
+                  </div>
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                    <button type="button" id="eliminado" class="btn btn-primary btn-eliminado btn-generico">Confirmar</button>
+                  
+                  </div>
+                </div>
+              </div>
+            </div>
 
 
-
-
-
-			//Vaciar carrito
-			$('.eliminar').click(function () {
-                    var load = $('#eliminar');
-					var token = $('input[name=_token]').val();
-               		var id = $(this).parent().parent().find('.id').val();
-					console.log(id);
-					console.log(id);
-                    $.ajax({
-                        url: "/eliminarcarrito",
-                        type: 'POST',
-                        datatype: 'json',
-                        data: {
-                            id: id,
-                            _token: token
-                        },
-                        success: function (response) {
-                            location.href = '/carrito';
-                        }
-                    });
-                });
-
-
-
-            //Eliminar producto
-           $('.btn-eliminar').on("click",function () {
+         
+    
+            @else
+                        <h5>No hay productos </h5>
+            @endif
+            
+            @section('javascript')
+                <script type="text/javascript">
+                    $(document).ready(function() {
+                        
+                             //Carga cantidad
+            $('.btn-editar').on("click", function () {
                 var token = $('input[name=_token]').val();
                 var id = $(this).parent().parent().find('.id').val();
+                var cantidad = $(this).parent().parent().find('.cantidad').val();
                 console.log(id);
+                console.log(cantidad)
                 $.ajax({
-                    url: "/productoaeliminar",
+                    url: "/actualizarcantidad",
+                    type: 'POST',
+                    datatype: 'json',
+                    data: {
+                        id: id,
+                        cantidad: cantidad,
+                        _token: token
+                    },
+                    success: function (response) {
+                        console.log(response);
+                        location.href='/carrito';
+            
+                    }
+                });
+                /*$.ajax({
+                    url: "/editar",
                     type: 'POST',
                     datatype: 'json',
                     data: {
@@ -306,37 +235,102 @@
                         _token: token
                     },
                     success: function (response) {
-                        var producto = $('#aeliminar');
                         console.log(response);
-                        producto.html('');
-                        $('#exampleModalEliminar').modal('show');
-                        producto.append('¿Desea eliminar '+'<strong style="color: #1d68a7; font-weight: bold">'+response[0].nombre+'</strong>' + '?');
-                        console.log(response);
+                        $('#exampleModalCenter').modal('show');
+                       
                     }
-                });
-                $('.btn-eliminado').click(function () {
-                    var load = $('#eliminado');
-                    load.html('Eliminando '+' <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>');
-                   
-                    $.ajax({
-                        url: "/eliminarproducto",
-                        type: 'POST',
-                        datatype: 'json',
-                        data: {
-                            id: id,
-                            _token: token
-                        },
-                        success: function (response) {
-                            location.href = '/carrito';
-                        }
-                    });
-                });
+                });*/
             });
-	});
-	
-			
-		
-           
-			
-    </script>
-@stop
+                         //Guarda cantidad editada
+                         $("#guardar").click(function () {
+                                var token = $("input[name='_token']").val();
+                                var id = $(this).parent().parent().find('.id').val();
+                                var cantidad = $('.cantidad').val();
+                                var load = $('#guardar');
+                                console.log(cantidad + id);
+                                load.html('<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>');
+                                $.ajax({
+                                    url: "/actualizarcantidad",
+                                    type: 'POST',
+                                    datatype: 'json',
+                                    data: {
+                                        id: id,
+                                        cantidad: cantidad,
+                                        _token: token
+                                    },
+                                    success: function (response) {
+                                        console.log(cantidad);
+                                        location.href='/carrito';
+                            
+                                    }
+                                });
+                            });
+                      
+                        //Vaciar carrito
+                        $('.eliminar').click(function () {
+                                var load = $('#eliminar');
+                                var token = $('input[name=_token]').val();
+                                   var id = $(this).parent().parent().find('.id').val();
+                                console.log(id);
+                                console.log(id);
+                                $.ajax({
+                                    url: "/eliminarcarrito",
+                                    type: 'POST',
+                                    datatype: 'json',
+                                    data: {
+                                        id: id,
+                                        _token: token
+                                    },
+                                    success: function (response) {
+                                        location.href = '/carrito';
+                                    }
+                                });
+                            });
+                        //Eliminar producto
+                       $('.btn-eliminar').on("click",function () {
+                            var token = $('input[name=_token]').val();
+                            var id = $(this).parent().parent().find('.id').val();
+                            console.log(id);
+                            $.ajax({
+                                url: "/productoaeliminar",
+                                type: 'POST',
+                                datatype: 'json',
+                                data: {
+                                    id: id,
+                                    _token: token
+                                },
+                                success: function (response) {
+                                    var producto = $('#aeliminar');
+                                    console.log(response);
+                                    producto.html('');
+                                    $('#exampleModalEliminar').modal('show');
+                                    producto.append('¿Desea eliminar '+'<strong style="color: #1d68a7; font-weight: bold">'+response[0].nombre+'</strong>' + '?');
+                                    console.log(response);
+                                }
+                            });
+                            $('.btn-eliminado').click(function () {
+                                var load = $('#eliminado');
+                                load.html('Eliminando '+' <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>');
+                               
+                                $.ajax({
+                                    url: "/eliminarproducto",
+                                    type: 'POST',
+                                    datatype: 'json',
+                                    data: {
+                                        id: id,
+                                        _token: token
+                                    },
+                                    success: function (response) {
+                                        location.href = '/carrito';
+                                    }
+                                });
+                            });
+                        });
+                });
+                
+                        
+                    
+                       
+                        
+                </script>
+            @stop

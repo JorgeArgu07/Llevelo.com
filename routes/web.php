@@ -15,9 +15,20 @@ use Illuminate\Support\Facades\Route;
 */
 
 
-Route::get('/', function () {
+Route::get('/hola', function () {
     return view('welcome');
+
+    $user=Auth::user();
+if ($user->vendedor()){
+    echo "Eres vendedor";
+}
+else{
+
+    echo 'eres comprador';
+}
 });
+
+
 
 Auth::routes();
 
@@ -25,17 +36,15 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 
 //DIEGO
-Route::get('/carrito', "PagoController@Pago");
-Route::get('/prueba', "PagoController@Mostrar");
+#Route::get('/carrito', "PagoController@Pago");
+Route::get('/carrito', "PagoController@carrito");
 Route::post('/productoaeliminar','PagoController@productoaeliminar');
 Route::post('/eliminarproducto','PagoController@eliminarproducto');
 Route::post('/eliminarcarrito','PagoController@eliminarcarrito');
-Route::get('direccion', function(){
-    return view('direccion');
-});
-Route::post('/agregarmarca','PagoController@agregar');
-Route::post('/actualizarcantidad','PagoController@actualizar');
 
+Route::post('/agregarmarca','PagoController@agregar');
+
+route::get('/productos', 'PagoController@Productos');
  
 
 

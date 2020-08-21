@@ -6,23 +6,26 @@ use Illuminate\Http\Request;
 use DB;
 use App;
 use App\CarritoProducto;
+use App\Producto;
 use App\Carrito;
 use App\Persona;
 class PagoController extends Controller
-{
+{ 
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
     
     function Pago(Request $request)
     {
         
         $ventas = DB::table('carrito_producto')
         ->select(DB::raw('sum(total * cantidad) as ventas'))
-        ->groupBy('id')
+       
         ->get();
+        
         $p = Persona::all();
-        #$persona = Carrito::where('id', $request->id)->with('p')->get();
-        #$personas = Carrito::all();
-        #$pagos = Carrito::sum('subtotal');
-        #return view('carrito')->with(compact("pagos", "personas", "persona", "p")); 
+        
         $persona = CarritoProducto::where('id', $request->id)->with('p')->get();
         $personas = CarritoProducto::all();
         $pagos = CarritoProducto::sum('total');
@@ -48,12 +51,12 @@ class PagoController extends Controller
     
         function eliminarproducto(Request $request){
             
-            $producto_eli = CarritoProducto::findOrFail($request->id);
+            $producto_eli = CarritoProducto::find($request->id);
             $producto_eli->delete();
            \Session::flash('eliminado',$producto_eli);
 
-            return \Redirect::back();
-            
+            return \Redirect::back();  
+
         }
 
         
@@ -64,37 +67,94 @@ class PagoController extends Controller
     
         function eliminarcarrito(Request $request){
             $producto_eli = CarritoProducto::truncate();
-            #$producto_eli->delete($request->id);
-           # \Session::flash('eliminado',$producto_eli);
             return \Redirect::back();
             
         }
         
         function Mostrar(Request $request)
         { 
-            $Venta = Carrito::all();
-            return view('prueba', compact("Venta"));
+            $Venta = Carrito::with('carrito')->get();
+            return $Venta;
         }
-        function agregar(Request $request){
-            $subtotal = $request->subtotal;
-            $subtotal->save();
-            \Session::flash($subtotal);
-            return \Redirect::back();
-        }
+      
+
+
+
+
+
 
         function actualizar(Request $request){
-            $editar = CarritoProducto::where('id',$request->id)->update(['cantidad'=>$request->input('cantidad'),]);
-            \Session::flash('cantidad',$editar);
-            return \Redirect::back();
+            $editar = CarritoProducto::find($request->id);
+            $editar->cantidad = $request->cantidad;
+            $editar->save();
+            #\Session::flash('eliminado',$editar);
+            #return \Redirect::back();  
+            return $editar;
+           
     
         }
+        function editar(Request $request){
+            $edit = CarritoProducto::all();
+            return $edit;
+        }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
         function actualizarTotal(Request $request){
             $ventas = DB::table('carrito_producto')
             ->select(DB::raw('sum(total * cantidad) as ventas'))
-            ->groupBy('id')
+            ->where('id')
             ->get();
+           
+        
+        }
+       
+        function carrito(Request $request){
+        
+
+            $ventas = DB::table('carrito_producto')
+            ->select(DB::raw('sum(total * cantidad) as ventas'))
+            ->get();
+            $pagos = CarritoProducto::sum('total');
+            $p = Persona::all();
+            $persona = CarritoProducto::where('id', $request->id)->with('p')->get();
+            $personas = CarritoProducto::all();
+           return view('carrito')->with(compact("pagos", "personas","ventas","p")); 
+        
+           #$persona = DB::table('users')
+            #->select(DB::raw( 'sum( total * cantidad) as T'),'users.id as id','carrito_producto.total as total','carrito_producto.cantidad as cantidad'  )
+            #->join('personas', 'users.id', '=', 'personas.users_id')
+            #->join('carrito', 'personas.id', '=','carrito.id_persona')
+            #->join('carrito_producto','carrito_producto.id_carrito', '=', 'carrito.id')  
+            #->groupBy('users.id', 'carrito_producto.total', 'carrito_producto.cantidad')
+            #->where('id_persona','=','1')
+            #->get();  
+            #return view('carrito')->with(compact('persona')); 
+        
         }
 
+
+ function productos(Request $request)
+{
+$productos = Producto::all();
+return view('prueba', compact("productos"));
+
+}
+function añadiralcarro(Request $request){
+
+}
 
 }

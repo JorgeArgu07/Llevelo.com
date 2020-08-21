@@ -10,4 +10,15 @@ class CarritoProducto extends Model
     protected $table = 'carrito_producto';
     public $timestamps = false;
 
+
+
+public function id_carrito() {
+    return $this->belongsTo(Carrito::class,'id_carrito');
+}
+
+
+
+
+
+
 }
