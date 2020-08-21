@@ -2,6 +2,7 @@
 
 @section('css')
 {{-- Aqui van los CSS --}}
+
 @endsection
 
 @section('modulos')

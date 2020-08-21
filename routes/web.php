@@ -15,9 +15,13 @@ use Illuminate\Support\Facades\Route;
 */
 
 Auth::routes();
-
 Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/ProductosPublicados', 'ProductoController@viewProductosPublicadosUsuario');
+Route::get('/PublicarProducto', 'ProductoController@viewPublicarProducto');
+Route::post('/setProducto', 'ProductoController@setProducto');
+Route::post('setEstadoProducto','ProductoController@setEstadoProducto');
+Route::post('/updateProducto','ProductoController@updateProducto');
+Route::post('/ModificarProducto', 'ProductoController@viewModificarProducto');
 // Route::get('/', function () {
 // 	return view('welcome');
 // });
