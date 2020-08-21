@@ -23,7 +23,6 @@ if ($user->vendedor()){
     echo "Eres vendedor";
 }
 else{
-
     echo 'eres comprador';
 }
 });
@@ -53,14 +52,23 @@ route::get('/productos', 'PagoController@Productos');
 
 
 Auth::routes();
-
 Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/ProductosPublicados', 'ProductoController@viewProductosPublicadosUsuario');
+Route::get('/PublicarProducto', 'ProductoController@viewPublicarProducto');
+Route::post('/setProducto', 'ProductoController@setProducto');
+Route::post('setEstadoProducto','ProductoController@setEstadoProducto');
+Route::post('/updateProducto','ProductoController@updateProducto');
+Route::post('/ModificarProducto', 'ProductoController@viewModificarProducto');
+Route::get('/buscarProducto', 'ProductoController@buscarProducto');
 
-// Route::get('/', function () {
-// 	return view('welcome');
-// });
 Route::get('/','Index@inicio');
 // Route::get('/buscar','Index@buscar');
-Route::get('/producto','Index@productos');
-Route::get('/categorias','Index@categorias');
+
+// Route::post('/categorias','CategoriasController@ViewCategorias');
+Route::get('/categorias','CategoriasController@ViewCategorias');
+
+Route::get('/producto','ProductosController@ViewProductos');
+
+// Route::get('/productos','CategoriasController@ViewProductos');
+
+
