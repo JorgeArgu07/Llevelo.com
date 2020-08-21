@@ -25,16 +25,16 @@
 @endsection
 
 @section('contenido')
-
+@foreach($pto as $p)
 <div class="container"  align="center">
 	<div class="card mb-3 justify-content-md-center" style=" width: 850px;  height: 450px;">
 		<div class="row no-gutters">
 			<div class="col-md-4">
-				<img src="..." class="card-img" alt="...">
+				<img src="{{ $p->ruta_img }}" class="card-img" alt="..." width="50">
 			</div>
 			<div class="col-md-8">
 				<div class="card-body" style="text-align: left;">
-					@foreach($pto as $p)
+					
 					<h4 class="card-title">{{ $p->producto }}</h4>
 					{{-- <h4 class="card-title">Nombre del Producto</h4> --}}
 					<h6>Descripcion:</h6>

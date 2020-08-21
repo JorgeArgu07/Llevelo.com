@@ -51,7 +51,7 @@
 	<div class="card mb-3 justify-content-md-center contenedor col-12">
 		<div class="row no-gutters">
 			<div class="col-md-4">
-				<img src="..." class="card-img" alt="...">
+				<img src="{{ $pxc->ruta_img }}" class="card-img" alt="Producto" width="50">
 			</div>
 			<div class="col-md-8">
 				<div class="card-body descripcion">
