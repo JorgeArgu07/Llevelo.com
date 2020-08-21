@@ -78,35 +78,19 @@ class PagoController extends Controller
         }
       
 
-
-
-
-
-
-           function actualizar(Request $request){
+        function actualizar(Request $request){
+          
            $editar = CarritoProducto::find($request->id);
            $editar->cantidad = $request->cantidad;
            $editar->save();
            \Session::flash('eliminado',$editar);
            return $editar;
-           $editar = new CarritoProducto();
-          
+           
         }
         function editar(Request $request){
             $edit = CarritoProducto::all();
             return $edit;
         }
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -154,13 +138,17 @@ $productos = Producto::all();
 return view('prueba', compact("productos"));
 
 }
-function añadiralcarro(Request $request){
-  $persona = DB::table('carrito_producto')
-  ->select('productos.ruta_img')
-  ->join('productos', 'productos.id', '=', 'carrito_producto.id_producto')
-  ->get();
-  return view('carrito', compact('persona'));
 
-}
+
+
+function añadiralcarro(Request $request){
+ 
+    
+ }
+ 
+ function carro(Request $request){
+   
+ }
+
 
 }

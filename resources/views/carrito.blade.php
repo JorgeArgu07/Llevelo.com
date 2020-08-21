@@ -154,7 +154,8 @@
 
 <div class="card" style="width:1100px;">
 <div class="card-body">
-<h3 class="card-title">Carrito</h3>           
+<h3 class="card-title">Carrito</h3>      
+   
 @if(($personas && $pagos))
 <div class="card" style="width: 100%;" id="tabla1">
         <table class="table" >
@@ -169,7 +170,7 @@
      <h4> ${{$producto->total}} MXN</h4> </div>
        </th>
      
-      
+     
      <td style="width:800px"> <input style="height:35px" type="number" value="{{$producto->cantidad}}" class="float-right cantidad" min="1" max="10" name="productos" >   </td>
      <td><button  type="button" id="editar" name="editar" class="btn btn-warning float-right btn-editar cantidad" href="#exampleModalCenter"style="height:35px" ><i class="fas fa-redo" style="color: white; "></i></i></button>           </td>
      <td style="width:800px">
