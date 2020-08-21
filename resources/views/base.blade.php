@@ -106,8 +106,8 @@
 			</form>
 			<ul class="navbar-nav" id="ulu">
 				<li class="nav-link">
-					<a class="nav-link" href="#">
-						<img src="/img/carrito.png" alt="carrito" width="20" height="20">
+					<a class="nav-link" href="http://llevelo.com/carrito">
+						<img src="/img/carrito.png" href="/categorias"  alt="carrito" width="20" height="20">
 						CARRITO
 					</a>
 				</li>
