@@ -38,11 +38,5 @@ class CategoriasController extends Controller
     	// ->join('productos','categorias.id','=','productos.id_categoria')
     	// ->select('productos.producto','productos.precio','categorias.categoria')
     	// ->get();
-
-        $pedidos=DB::table('personas')
-        ->where('personas.nombre','=',aqui va el id o nombre de la persona)
-        ->join('pedidos','personas.id','=','pedidos.id_persona')
-        ->select('pedidos.fecha_pedido','pedidos.subtotal','pedidos.estatus')
-        ->get();
     }
 }

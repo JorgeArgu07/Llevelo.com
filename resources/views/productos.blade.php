@@ -44,15 +44,11 @@
 					@endforeach
 					<div class="container col-12">
 						<div class="row">
-							{{-- boton de comprar ahora. --}}
 							<a href="" class="btn rounded-pill btnproduct">Comprar</a>
 							<a href="" class="btn rounded-pill btncarrito">Agregar al Carrito</a>
-							
+							{{-- Esta es la buena jorge --}}
 						</div>
 					</div>
-{{-- 					<div style="background-color: blue;">
-						<p>Hola</p>
-					</div> --}}
 				</div>
 			</div>
 		</div>
