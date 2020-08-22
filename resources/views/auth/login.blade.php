@@ -218,7 +218,7 @@ body {
                         </div>
                         <br><br>
                             <center>
-                            <a>¿No estas registrado?,</a><a href="http://llevelo.com/register">Registrate aqui.</a>
+                            <a>¿No estas registrado?,</a><a href="/register">Registrate aqui.</a>
                             </center>
                             
                     </form>
