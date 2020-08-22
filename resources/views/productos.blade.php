@@ -3,20 +3,23 @@
 @section('css')
 {{-- Aqui van los CSS --}}
 <style>
-	.btnproduct
-	{
-		margin-right: 15px;
-		background-color: #39d393;
-	}
-	.btncarrito
-	{
-		background-color: #eeb729;
-		margin-right: 15px;
-	}
-	.container
-	{
-		margin-bottom: 50px;
-	}
+	.btn{
+        border-radius: 20px;
+    }
+	.btn-success{
+        background-color: #39d393;
+        border-color: #39d393;   
+    }
+	.btn-success:hover{
+        background-color: #36c98c;
+        border-color: #36c98c;
+    }
+	.btn-warning{
+        background-color: #eeb729;
+        border-color: #eeb729;
+        color: white;
+    }
+	
 </style>
 @endsection
 
@@ -26,27 +29,25 @@
 
 @section('contenido')
 @foreach($pto as $p)
-<div class="container"  align="center">
-	<div class="card mb-3 justify-content-md-center" style=" width: 850px;  height: 450px;">
-		<div class="row no-gutters">
-			<div class="col-md-4">
-				<img src="{{ $p->ruta_img }}" class="card-img" alt="..." width="50">
-			</div>
-			<div class="col-md-8">
-				<div class="card-body" style="text-align: left;">
-					
-					<h4 class="card-title">{{ $p->producto }}</h4>
-					{{-- <h4 class="card-title">Nombre del Producto</h4> --}}
-					<h6>Descripcion:</h6>
-					<p>{{ $p->detalles }}</p>
-					<h6 align="left">Precio: </h6>
-					<p>{{ $p->precio }}</p>
-					@endforeach
-					<div class="container col-12">
+<div class="container">
+	<div class="row">
+		<div class="col-12">
+			<div class="card mt-5">
+				<div class="card-body">
+					<div class="container">
 						<div class="row">
-							<a href="" class="btn rounded-pill btnproduct">Comprar</a>
-							<a href="" class="btn rounded-pill btncarrito">Agregar al Carrito</a>
-							{{-- Esta es la buena jorge --}}
+							<div class="col-md-5 col-sm-6">
+								<img src="{{ $p->ruta_img }}" class="card-img" alt="..." width="30%">
+							</div>
+							<div class="col-md-6 col-sm-6">
+								<h3 class="card-title">{{ $p->producto }}</h3>
+								<p> <b>Condición: </b> {{ $p->condicion }}</p>
+								<p> <b>Descripcion: </b> {{ $p->detalles }}</p>
+								<p><b>Precio: </b>MXN${{ $p->precio }}</p>
+								<br>
+								<a href="" class="btn btn-success mr-3">Comprar</a>
+								<a href="" class="btn btn-warning">Agregar al Carrito</a>
+							</div>
 						</div>
 					</div>
 				</div>
@@ -54,4 +55,9 @@
 		</div>
 	</div>
 </div>
+
+@endforeach
+
 @endsection
+
+

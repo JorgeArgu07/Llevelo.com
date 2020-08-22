@@ -3,22 +3,20 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use DB;
+use Illuminate\Support\Facades\DB;
 
 class ProductosController extends Controller
 {
     function ViewProductos(Request $request)
     {
-        $num=$request->subject;
-        $val=(int)$num;
+        $num = $request->id;
+        $val = (int)$num;
+        //dd($request);
+
         
-        $pto=DB::table('productos')
-        ->where('productos.id','=',$val)
+        $pto = DB::table('productos')->where('id','=',$val)->get();
 
-        ->select('productos.producto','productos.precio','productos.detalles','productos.ruta_img')
-        ->get(); 
-
-        // dd($val);
+        //dd($val);
     	return view('productos',compact('pto'));
     }
 

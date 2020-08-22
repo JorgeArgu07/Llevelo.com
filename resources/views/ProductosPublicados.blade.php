@@ -113,7 +113,7 @@
                                             <input type="text" name="id" hidden value="{!! $producto->id !!}">
                                             <button class="dropdown-item" type="submit">Modificar Producto</button>
                                         </form>
-                                        <form action="/producto" method="get">
+                                        <form action="/productos" method="get">
                                             @csrf
                                             <input type="text" name="id" hidden value="{!! $producto->id !!}">
                                             <button class="dropdown-item" type="submit">Ver Producto</button>

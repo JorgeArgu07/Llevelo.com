@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use DB;
+use Illuminate\Support\Facades\DB;
 
 class CategoriasController extends Controller
 {
@@ -13,9 +13,8 @@ class CategoriasController extends Controller
         $valor=$request->subject;
         $numero=(int)$valor;
         $productxcat = DB::table('productos')
-        ->where('categorias.id','=',$numero)
+        ->where([['categorias.id','=',$numero], ['estado','=','activo']])
         ->join('categorias','categorias.id','=','productos.id_categoria')
-        ->select('productos.id','productos.producto','productos.precio','productos.ruta_img','categorias.categoria')
         ->get();
 
         $cat=DB::table('categorias')

@@ -47,7 +47,7 @@ Route::post('/editar','PagoController@editar');
 
  
 
-route::get('/productos', 'PagoController@Productos');
+//route::get('/productos', 'PagoController@Productos');
  
 
 
@@ -67,7 +67,7 @@ Route::get('/','Index@inicio');
 // Route::post('/categorias','CategoriasController@ViewCategorias');
 Route::get('/categorias','CategoriasController@ViewCategorias');
 
-Route::get('/producto','ProductosController@ViewProductos');
+Route::get('/productos','ProductosController@ViewProductos');
 
 // Route::get('/productos','CategoriasController@ViewProductos');
 

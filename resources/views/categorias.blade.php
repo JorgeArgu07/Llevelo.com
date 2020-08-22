@@ -35,39 +35,63 @@
 		margin-bottom: 50px;
 		width:height: 
 	}
+	.btn{
+        border-radius: 20px;
+    }
+	.btn-success{
+        background-color: #39d393;
+        border-color: #39d393;   
+    }
+	.btn-success:hover{
+        background-color: #36c98c;
+        border-color: #36c98c;
+    }
+	.btn-warning{
+        background-color: #eeb729;
+        border-color: #eeb729;
+        color: white;
+    }
 </style>
 @endsection
 
 @section('contenido')
 @foreach($cat as $c)
-<div class="container rounded " align="center">
-	<div class="container col-12 card mb-3 justify-content-md-center contenedor" style="text-align: left;">
-		<h4>Categoria de {{ $c->categoria }}</h4>
+<div class="container">
+	<div class="row col-12 mb-3 contenedor">
+		<div class="col">
+			<h2>{{ $c->categoria }}</h2>
+		</div>	
 	</div>
+	<hr>
 </div>
 @endforeach
-@foreach($productxcat as $pxc)
-<div class="container "  align="center" style="margin-top: -20px; ">
-	<div class="card mb-3 justify-content-md-center contenedor col-12">
-		<div class="row no-gutters">
-			<div class="col-md-4">
-				<img src="{{ $pxc->ruta_img }}" class="card-img" alt="Producto" width="50">
-			</div>
-			<div class="col-md-8">
-				<div class="card-body descripcion">
-					<h4 class="card-title">{{ $pxc->producto }}</h4>
-					<h6>Descripcion:</h6>
-					<p>Aqui va ala descripcion del product</p>
-					<h6 align="left">Precio: </h6>
-					<p class="card-text">{{ $pxc->precio }}</p>
-					<div class="container col-12">
+@foreach($productxcat as $p)
+<div class="container">
+	<div class="row">
+		<div class="col-12">
+			<div class="card">
+				<div class="card-body">
+					<div class="container">
 						<div class="row">
-							{{-- <a class="btn btnproduct rounded-pill " href="/traer" >Ver Producto</a> --}}
-							<form action="/producto" method="get" accept-charset="utf-8">
-								<button class="btn btnproduct rounded-pill text-light" name="subject" value="{{ $pxc->id }}" href="/producto">Ver Producto</button>
-							</form>
-							<a href="" class="btn rounded-pill btncarrito clr text-light">Agregar al Carrito</a>
-							
+							<div class="col-md-3 col-sm-6">
+								<img src="{{ $p->ruta_img }}" class="card-img" alt="..." width="100%">
+							</div>
+							<div class="col-md-6 col-sm-6">
+								<h3 class="card-title">{{ $p->producto }}</h3>
+								<p> <b>Condición: </b> {{ $p->condicion }}</p>
+								<p><b>Precio: </b>MXN${{ $p->precio }}</p>
+								<br>
+								<div class="row">
+									<div class="col-md-3 col-sm-1">
+										<form action="/productos" method="get" accept-charset="utf-8">
+											<button class="btn btn-success" name="id" value="{{ $p->id }}" href="/productos">Ver Producto</button>
+										</form>
+									</div>
+									<div class="col-md-2 col-sm-1">
+										<a href="" class="btn btn-warning">Agregar al Carrito</a>
+									</div>
+								</div>								
+							</div>
 						</div>
 					</div>
 				</div>
@@ -75,5 +99,6 @@
 		</div>
 	</div>
 </div>
+
 @endforeach
 @endsection
