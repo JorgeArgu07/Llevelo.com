@@ -41,10 +41,5 @@ class User extends Authenticatable
     public function role(){
         return $this->belongsTo('App\tipo');
     }
-    public function vendedor(){
-       if($this->role->tipo=='vendedor'){
-           return true;
-       }
-       return false;
-    }
+    
 }

@@ -41,15 +41,21 @@ Route::get('/carrito', "PagoController@carrito");
 Route::post('/productoaeliminar','PagoController@productoaeliminar');
 Route::post('/eliminarproducto','PagoController@eliminarproducto');
 Route::post('/eliminarcarrito','PagoController@eliminarcarrito');
-
 Route::post('/agregarmarca','PagoController@agregar');
 Route::post('/actualizarcantidad','PagoController@actualizar');
 Route::post('/editar','PagoController@editar');
-
- 
-
 route::get('/productos', 'PagoController@Productos');
- 
+Route::post('/cargarproductos','PagoController@carro');
+Route::post('/agregarproductos','PagoController@añadiralcarro');
+Route::get('/agregar', 'PagoController@agregar');
+Route::post('/agregar','PagoController@agregarequipo');
+route::get('/pago', 'PagoController@tipodepago');
+Route::post('/cargarpago','PagoController@pagar');
+Route::post('/agregarpago','PagoController@añadirtipodepago');
+
+
+
+
 
 
 Auth::routes();

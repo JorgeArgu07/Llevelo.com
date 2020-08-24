@@ -154,9 +154,10 @@
 
 <div class="card" style="width:1100px;">
 <div class="card-body">
-<h3 class="card-title">Carrito</h3>      
+<h3 class="card-title">Carrito</h3>    
+     
    
-@if(($personas && $pagos))
+@if(($persona))
 <div class="card" style="width: 100%;" id="tabla1">
         <table class="table" >
  
@@ -167,12 +168,12 @@
     <th><button type="button" class="btn btn-primary btn-eliminar" id="eliminar" data-toggle="modal" data-target="#exampleModalLong" style=" background-color: red; border: 0px;"><i class="far fa-trash-alt" style="color: white;"></i></th>
     <th> <img class="lib-img-show" src="img/{{$producto->ruta_img}}" value="{{$producto->ruta_img}}" style="width:150px"> </th>
       <th scope="col" style="width:1000px"><p>{{$producto->detalles}}</p> <br>
-     <h4> ${{$producto->total}} MXN</h4> </div>
+     <h4> ${{$producto->precio}} MXN</h4> </div>
        </th>
      
      
      <td style="width:800px"> <input style="height:35px" type="number" value="{{$producto->cantidad}}" class="float-right cantidad" min="1" max="10" name="productos" >   </td>
-     <td><button  type="button" id="editar" name="editar" class="btn btn-warning float-right btn-editar cantidad" href="#exampleModalCenter"style="height:35px" ><i class="fas fa-redo" style="color: white; "></i></i></button>           </td>
+     <td><button  type="button" id="editar" name="editar" value="" class="btn btn-warning float-right btn-editar cantidad" href="#exampleModalCenter"style="height:35px" ><i class="fas fa-redo" style="color: white; "></i></i></button>           </td>
      <td style="width:800px">
 </td>
     </div>
@@ -223,7 +224,7 @@
 
          
     
-            @else
+            @elseif(carrito_producto.cantidad==null)
                         <h5>No hay productos </h5>
             @endif
             
@@ -277,7 +278,7 @@
                                 var cantidad = $('.cantidad').val();
                                
                                 var load = $('#guardar');
-                                console.log(productos + id);
+                                console.log(cantidad+ id);
                                 load.html('<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>');
                                 
                                  console.log(productos);

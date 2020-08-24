@@ -1,105 +1,233 @@
-@extends('layouts.app')
-
+@extends('templates.master')
 @section('content')
 
-<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
-<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
-<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-<link href="//netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
-<script src="//netdna.bootstrapcdn.com/bootstrap/3.1.0/js/bootstrap.min.js"></script>
-<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
-
-
-<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.8/css/all.css">
-
-
-
-<head>
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<!doctype html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
-<link rel="icon" type="image/png" href="images/icons/favicon.ico"/>
-<!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="vendor/bootstrap/css/bootstrap.min.css">
-<!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="fonts/font-awesome-4.7.0/css/font-awesome.min.css">
-<!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="fonts/Linearicons-Free-v1.0.0/icon-font.min.css">
-<!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="vendor/animate/animate.css">
-<!--===============================================================================================-->	
-	<link rel="stylesheet" type="text/css" href="vendor/css-hamburgers/hamburgers.min.css">
-<!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="vendor/animsition/css/animsition.min.css">
-<!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="vendor/select2/select2.min.css">
-<!--===============================================================================================-->	
-	<link rel="stylesheet" type="text/css" href="vendor/daterangepicker/daterangepicker.css">
-<!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="css/util.css">
-	<link rel="stylesheet" type="text/css" href="css/main.css">
-<!--===============================================================================================-->
-</head>
 
 
 <div class="container">
-<div class="card" style="width:1100px;">
-<div class="card-body">
-<h3 class="card-title">Envio y pago</h3>
-</div>
-</div>
-<div class="card" style="width:730px;">
+<div class="card" style="width:100%;">
 <div class="card-body">
 <h3 class="card-title">Forma de pago</h3>
-<br>
+</div>
+</div>
+<div class="card" style="width:100%;">
+@foreach($personas as $p)
+<center>
 <input type=image src="img/Tarjeta.png"   width="160" height="80"> 
-<input type=image src="img/paypal.jpg"   width="160" height="80"> 
-<input type=image src="img/Tarjeta.png"   width="160" height="80"> 
+<input type="hidden" class="id" value="{{$p->id}}" name="ids"> 
+<button style="font-weight: bold; color: white; background-color: #45bc5d;" class="btn btn-primary btn-add"data-toggle="modal" data-target="#modalForm">Agregar Equipo <i class="fas fa-plus-circle" style="color: white;"></i></button>
 
-<div class="card-group">
-<div class="row">
-  <div class="col-sm-6">
-    <div class="card" style="background-color: rgb(255, 251, 187,0);opacity: 80%; border-radius:5%; height:250px;  width:337px" >
-      <div class="card-body">
-      <br><br>
-      <label for="inputEmail4">Numero de la tarjeta</label>
-      <input type="text" class="form-control" aria-label="Sizing example input" placeholder="0000 0000 0000 0000" aria-describedby="inputGroupMaterial-sizing-sm" style="width:240px">
-      <br>
-      <div class="form-group col-md-6">
-      <label for="inputEmail4">Titular de la tarjeta</label>
-      <input type="email" class="form-control" id="inputEmail4" placeholder="" style="width:130px">
-    </div>
-    <div class="form-group col-md-5">
-      <label for="inputPassword4">Caducidad</label>
-      <input type="password" class="form-control" id="inputPassword4" placeholder="MM/AA"style="width:130px">
-    </div>
-      </div>
-    </div>
-  </div>
 
-  <div class="col-6">
-  <div class="card" style="background-color: rgb(255, 251, 187,0);opacity: 80%; border-radius:5%; height:250px;  width:337px" >
-      <div class="card-body">
-      <br><br>
-      <br>
-      <div class="form-group col-md-6">
-     
-    </div>
-    <div class="form-group col-md-5">
-      <label for="inputPassword4">CVV</label>
-      <input type="password" class="form-control" id="inputPassword4" placeholder="000"style="width:130px">
-    </div>
-      </div>
-  </div>
-  
+
+{{--<a type="button" src="img/paypal.jpg" class="btn btn-primary btn-editar" name="editar" id="editar" data-toggle="modal" data-target="#exampleModal">--}}
+Paypal
+</a>
+
+<center>
+  @endforeach
 </div>
   </div>
 </div>
 <br><br>
-<center>
-<button type="button" class="btn btn-danger">Realizar pago</button>
-<center>
+</div>
+<!-- MODAL AGREGAR-->
+<div class="modal fade bd-example-modal-lg" id="modalForm" role="dialog">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <!-- Modal Header -->
+            <div class="modal-header">
+                   <h5 class="modal-title" id="exampleModalCenterTitle">Agregar nuevo equipo</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                         <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <!-- Modal Body -->
+            <div class="modal-body">
+                <p class="statusMsg"></p>
+                            {{csrf_field()}}
+            
+                    <button  type="Submit" id="agregar" class="btn btn-primary btn-agregar btn-generico">Guardar</button>
+                    <button type="button" class="btn btn-secondary btn-generico-cancelar" data-dismiss="modal ">Cerrar</button>
+            </div>
+
+            <!-- Modal Footer -->
+
+        </div>
+    </div>
 </div>
 
-
-
+       
+@section('javascript')
+                <script type="text/javascript">
+                    $(document).ready(function() {
+               //Agregar equipo
+               $('.btn-agregar').on("click",function () {
+               var token = $('input[name=_token]').val();
+               var id = $(this).parent().parent().find('.id').val();
+               var cantidad = $(this).parent().parent().find('.cantidad').val();
+               var total = $(this).parent().parent().find('.precio').val();
+               var id_persona = $(this).parent().parent().find('.id_persona').val();
+               var load = $('#agregar');
+                load.html('Agregando '+' <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>');
+                console.log(id);
+                $.ajax({
+                    url: "/agregar",
+                    type: 'POST',
+                    datatype: 'json',
+                    data: {
+                        _token: token,
+                        id_persona, id_persona,
+                        cantidad: cantidad,
+                        total: total,
+                    },
+                    success: function (response) {
+                        console.log(response);
+                      location.href = '/agregar';
+                    },
+                    error: function( jqXHR, textStatus, errorThrown ){
+                        console.log(jqXHR);
+                    }
+                });
+            });
+                             //Carga cantidad
+            $('.btn-editar').on("click", function () {
+                var token = $('input[name=_token]').val();
+                var id = $(this).parent().parent().find('.id').val();
+                var cantidad = $(this).parent().parent().find('.cantidad').val();
+                var total = $(this).parent().parent().find('.precio').val();
+                var id_persona = $(this).parent().parent().find('.id_persona').val();
+                console.log(id);
+                console.log(id_persona);
+              
+              
+                
+                $.ajax({
+                    url: "/agregarpago",
+                    type: 'POST',
+                    datatype: 'json',
+                    data: {
+                        id: id,
+                        id_persona,
+                        cantidad: cantidad,
+                        total: total,
+                        _token: token
+                    },
+                    success: function (response) {
+                        console.log(response);
+                        $('#exampleModalEliminar').modal('show');
+                        location.href='/agregar';
+            
+                    }
+                });
+                /*$.ajax({
+                    url: "/editar",
+                    type: 'POST',
+                    datatype: 'json',
+                    data: {
+                        id: id,
+                        _token: token
+                    },
+                    success: function (response) {
+                        console.log(response);
+                        $('#exampleModalCenter').modal('show');
+                       
+                    }
+                });*/
+            });
+                         //Guarda cantidad editada
+                         $("#guardar").click(function () {
+                                var token = $("input[name='_token']").val();
+                                var id = $(this).parent().parent().find('.id').val();
+                                var cantidad = $('.cantidad').val();
+                               
+                                var load = $('#guardar');
+                                console.log(cantidad+ id);
+                                load.html('<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>');
+                                
+                                 console.log(productos);
+                                $.ajax({
+                                    url: "/actualizarcantidad",
+                                    type: 'POST',
+                                    datatype: 'json',
+                                    data: {
+                                        id: id,
+                    
+                                        _token: token
+                                    },
+                                    success: function (response) {
+                                         $('#exampleModalEliminar').modal('show');
+                                        location.href='/carrito';
+                            
+                                    }
+                                });
+                            });
+                      
+                        //Vaciar carrito
+                        $('.eliminar').click(function () {
+                                var load = $('#eliminar');
+                                var token = $('input[name=_token]').val();
+                                   var id = $(this).parent().parent().find('.id').val();
+                                   
+                                console.log(id);
+                                console.log(id);
+                                $.ajax({
+                                    url: "/eliminarcarrito",
+                                    type: 'POST',
+                                    datatype: 'json',
+                                    data: {
+                                        id: id,
+                                        _token: token
+                                    },
+                                    success: function (response) {
+                                        location.href = '/carrito';
+                                    }
+                                });
+                            });
+                        //Eliminar producto
+                       $('.btn-eliminar').on("click",function () {
+                            var token = $('input[name=_token]').val();
+                            var id = $(this).parent().parent().find('.id').val();
+                            console.log(id);
+                            $.ajax({
+                                url: "/productoaeliminar",
+                                type: 'POST',
+                                datatype: 'json',
+                                data: {
+                                    id: id,
+                                    _token: token
+                                },
+                                success: function (response) {
+                                    var producto = $('#aeliminar');
+                                    console.log(response);
+                                    producto.html('');
+                                    $('#exampleModalEliminar').modal('show');
+                                    producto.append('¿Desea eliminar '+'<strong style="color: #1d68a7; font-weight: bold">'+response[0].nombre+'</strong>' + '?');
+                                    console.log(response);
+                                }
+                            });
+                            $('.btn-eliminado').click(function () {
+                                var load = $('#eliminado');
+                                load.html('Eliminando '+' <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>');
+                               
+                                $.ajax({
+                                    url: "/eliminarproducto",
+                                    type: 'POST',
+                                    datatype: 'json',
+                                    data: {
+                                        id: id,
+                                        _token: token
+                                    },
+                                    success: function (response) {
+                                        location.href = '/carrito';
+                                    }
+                                });
+                            });
+                        });
+                });
+                
+                        
+                    
+                       
+                        
+                </script>
+                
+            @stop
