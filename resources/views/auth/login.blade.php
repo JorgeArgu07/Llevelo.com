@@ -121,7 +121,7 @@ body {
 </style>
 </head>
 
-<body style=  "background-size: 100%; background-image:url('{{ asset('img/fondologin.png') }}');position:relative; ">
+<body style=  "background-size: 100%; background-image:url('{{ asset('img/loginfondo.png') }}');position:relative; ">
 <div class="vl"></div>
 
 

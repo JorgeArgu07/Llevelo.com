@@ -140,16 +140,10 @@ class PagoController extends Controller
         {
         
         $prod= DB::table('productos')
-        ->select(['productos.id','productos.cantidad','productos.precio', 'productos.producto']);
-        $flattened = $prod->flatten();
-        $flattened->all();
+        ->select('productos.id','productos.ruta_img','productos.cantidad','productos.precio', 'productos.producto')
+       ->get();
+        return view('pago', compact("prod"));
   
-      //  $personas = DB::table('carrito_producto')
-        //           ->select('productos.precio','productos.ruta_img' ,'carrito_producto.id','carrito_producto.precio','carrito_producto.cantidad' ,'productos.detalles')
-          //        ->join('productos', 'productos.id', '=', 'carrito_producto.id_producto')
-            //      ->get();
-        //return view('pago', compact("prod","personas"));
-    return dd($flattened);    
     }
         
         
