@@ -75,5 +75,15 @@
 		</div>
 	</div>
 </div>
+{{-- <script>
+	$(document).ready(function() {
+		setTimeout(refrescar, 10000);
+	});
+	function refrescar()
+	{
+		location.reload();
+		// $()
+	}
+</script> --}}
 @endforeach
 @endsection
