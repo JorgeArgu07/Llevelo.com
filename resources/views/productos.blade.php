@@ -1,29 +1,49 @@
 @extends('base')
-
 @section('css')
 {{-- Aqui van los CSS --}}
-
 <style>
+	.btn{
+        border-radius: 20px;
+    }
+	.btn-success{
+        background-color: #39d393;
+        border-color: #39d393;   
+    }
+	.btn-success:hover{
+        background-color: #36c98c;
+        border-color: #36c98c;
+    }
+	.btn-warning{
+        background-color: #eeb729;
+        border-color: #eeb729;
+        color: white;
+    }
 	
 </style>
 @endsection
-
+@section('secion')
+@endsection
 @section('contenido')
-<div class="container"  align="center">
-	<div class="card mb-3 justify-content-md-center" style=" width: 850px;  height: 500px;">
-		<div class="row no-gutters">
-			<div class="col-md-4">
-				<img src="..." class="card-img" alt="...">
-			</div>
-			<div class="col-md-8">
-				<div class="card-body" style="text-align: left;">
-					<h5 class="card-title">Card title</h5>
-					<p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-					<div class="container col-12">
+@foreach($pto as $p)
+<div class="container">
+	<div class="row">
+		<div class="col-12">
+			<div class="card mt-5">
+				<div class="card-body">
+					<div class="container">
 						<div class="row">
-							{{-- boton de comprar ahora. --}}
-							<a href="" class="btn btn-outline-warning btn-sm">Agregar al Carrito</a>
-							<a href="" class="">Agregar a Favoritos</a>
+							<div class="col-md-5 col-sm-6">
+								<img src="{{ $p->ruta_img }}" class="card-img" alt="..." width="30%">
+							</div>
+							<div class="col-md-6 col-sm-6">
+								<h3 class="card-title">{{ $p->producto }}</h3>
+								<p> <b>Condición: </b> {{ $p->condicion }}</p>
+								<p> <b>Descripcion: </b> {{ $p->detalles }}</p>
+								<p><b>Precio: </b>MXN${{ $p->precio }}</p>
+								<br>
+								<a href="" class="btn btn-success mr-3">Comprar</a>
+								<a href="" class="btn btn-warning">Agregar al Carrito</a>
+							</div>
 						</div>
 					</div>
 				</div>
@@ -31,4 +51,7 @@
 		</div>
 	</div>
 </div>
+
+@endforeach
+
 @endsection

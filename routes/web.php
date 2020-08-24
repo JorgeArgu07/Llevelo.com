@@ -15,18 +15,6 @@ use Illuminate\Support\Facades\Route;
 */
 
 
-Route::get('/hola', function () {
-    return view('welcome');
-
-    $user=Auth::user();
-if ($user->vendedor()){
-    echo "Eres vendedor";
-}
-else{
-
-    echo 'eres comprador';
-}
-});
 
 
 
@@ -44,9 +32,11 @@ Route::post('/eliminarcarrito','PagoController@eliminarcarrito');
 Route::post('/agregarmarca','PagoController@agregar');
 Route::post('/actualizarcantidad','PagoController@actualizar');
 Route::post('/editar','PagoController@editar');
-route::get('/productos', 'PagoController@Productos');
-Route::post('/cargarproductos','PagoController@carro');
-Route::post('/agregarproductos','PagoController@añadiralcarro');
+
+route::get('/producto', 'ProductoController@Productos');
+Route::post('/cargarproductos','ProductoController@carro');
+Route::post('/agregarproductos','ProductoController@añadiralcarro');
+
 Route::get('/agregar', 'PagoController@agregar');
 Route::post('/agregar','PagoController@agregarequipo');
 route::get('/pago', 'PagoController@tipodepago');
@@ -57,16 +47,23 @@ Route::post('/agregarpago','PagoController@añadirtipodepago');
 
 
 
-
 Auth::routes();
-
 Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/ProductosPublicados', 'ProductoController@viewProductosPublicadosUsuario');
+Route::get('/PublicarProducto', 'ProductoController@viewPublicarProducto');
+Route::post('/setProducto', 'ProductoController@setProducto');
+Route::post('setEstadoProducto','ProductoController@setEstadoProducto');
+Route::post('/updateProducto','ProductoController@updateProducto');
+Route::post('/ModificarProducto', 'ProductoController@viewModificarProducto');
+Route::get('/buscarProducto', 'ProductoController@buscarProducto');
 
-// Route::get('/', function () {
-// 	return view('welcome');
-// });
 Route::get('/','Index@inicio');
 // Route::get('/buscar','Index@buscar');
-Route::get('/producto','Index@productos');
-Route::get('/categorias','Index@categorias');
+
+// Route::post('/categorias','CategoriasController@ViewCategorias');
+Route::get('/categorias','CategoriaController@ViewCategorias');
+
+Route::get('/productos','ProductoController@ViewProductos');
+
+// Route::get('/productos','CategoriasController@ViewProductos');
+
