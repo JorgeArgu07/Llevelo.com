@@ -42,48 +42,15 @@
 
 <div class="container col-12 rounded contenedor bg-light" style=" padding-bottom: 10px; padding-top: 10px; width: 1170px;">
 	<div class="col-12 liga">
-		<a href="">Ver más</a>
+		<a href="/destacados">Ver más</a>
 	</div>
 	<div class="card-deck row justify-content-md-center">
+		@foreach($destacados as $d)
 		<div class="card ">
 {{-- Las imagenes deben tener una dimension de 340x340 --}}
-			<img src="/img/cubre.webp" class="imagen rounded imagenes">
-			{{-- <div class="card-body">
-				<h5 class="card-title">Card title</h5>
-				<p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-			</div> --}}
-			<div class="card-footer">
-				<small class="text-muted">Last updated 3 mins ago</small>
-			</div>
+			<img src="{{ $d->ruta_img }}" class="imagen rounded imagenes">
 		</div>
-		<div class="card">
-			<img src="/img/xbox360.png" class="imagen rounded img-fluid imagenes">
-			
-			<div class="card-footer">
-				<small class="text-muted">Last updated 3 mins ago</small>
-			</div>
-		</div>
-		<div class="card">
-			<img  src="/img/gta.jpg" class="imagen rounded img-fluid imagenes">
-			
-			<div class="card-footer">
-				<small class="text-muted">Last updated 3 mins ago</small>
-			</div>
-		</div>
-		<div class="card">
-			<img  src="/img/far.jpg" class="imagen rounded img-fluid imagenes">
-			
-			<div class="card-footer">
-				<small class="text-muted">Last updated 3 mins ago</small>
-			</div>
-		</div>
-		<div class="card">
-			<img  src="/img/left.jpg" class="imagen rounded img-fluid imagenes">
-			
-			<div class="card-footer">
-				<small class="text-muted">Last updated 3 mins ago</small>
-			</div>
-		</div>
+		@endforeach
 	</div>
 </div>
 
@@ -93,60 +60,55 @@
 
 	<div class="card-deck col-12 justify-content-md-center">
 		<div class="container col">
-			<h4 class="margen col-12" >Destacados</h4>
+			<h4 class="margen col-12" >Puede que te interese</h4>
 			<div class="container row bg-light rounded contenedor">
-				<div class="col-12 liga">
+{{-- 				<div class="col-12 liga">
 					<a href="" >Ver mas</a>
-				</div>
+				</div> --}}
+				@foreach($product as $p)
 				<div class="card col-sm carta" >
-					<img src="/img/xbox360.png" class="rounded img-fluid imagenes">
-					<div class="card-footer">
-						<small class="text-muted">Last</small>
-					</div>
+					<img src="{{ $p->ruta_img }}" class="rounded img-fluid imagenes">
+					<hr>
+					<form action="/producto" method="get" accept-charset="utf-8" align="center">
+						<button style="margin-top: -15px; margin-bottom: 5px; width: 70px;"class="btn btnproduct rounded-pill btn-sm btn-lg text-light"  type="submit" value="{{ $p->id }}" name="subject">Ver</button>
+					</form>
 				</div>
-				<div class="card col-sm carta">
-					<img src="/img/xbox360.png" class="rounded img-fluid imagenes">
-					<div class="card-footer">
-						<small class="text-muted">Last</small>
-					</div>
-				</div>
-				<div class="card col-sm carta">
-					<img src="/img/xbox360.png" class="rounded img-fluid imagenes">
-					<div class="card-footer">
-						<small class="text-muted">Last</small>
-					</div>
-				</div>
+				@endforeach
 			</div>
 		</div>
 		{{-- Segundo contenedor --}}
 		<div class="container col ">
-			<h4 class="margen col-12" >Destacados</h4>
+			<h4 class="margen col-12" >Puede que te interese</h4>
 			<div class="container row bg-light rounded contenedor" >
-				<div class="col-12 liga">
+				{{-- <div class="col-12 liga">
 					<a href="" >Ver mas</a>
-				</div>
-				<div class="card col-sm carta" >
-					<img src="/img/xbox360.png" class="rounded img-fluid imagenes">
-					<div class="card-footer">
-						<small class="text-muted">Last</small>
+				</div> --}}
+				@foreach($produ as $pr)
+					<div class="card col-sm carta">
+						{{-- <p>{{ $pr->id}}</p> --}}
+						<img src="{{ $pr->ruta_img }}" class="rounded img-fluid imagenes">
+						<hr>
+						<form action="/producto" method="get" accept-charset="utf-8" align="center">
+							<input type="hidden" id="id" name="id" value="{{ $pr->id }}" class="form-control">
+							<button style="margin-top: -15px; margin-bottom: 5px; width: 70px;" class="btn btnproduct rounded-pill btn-sm btn-lg text-light"  type="submit" name="subject">Ver</button>
+						</form>
 					</div>
-				</div>
-				<div class="card col-sm carta">
-					<img src="/img/xbox360.png" class="rounded img-fluid imagenes">
-					<div class="card-footer container">
-						<small class="text-muted">Last</small>
-					</div>
-				</div>
-				<div class="card col-sm carta">
-					<img src="/img/xbox360.png" class="rounded img-fluid imagenes">
-					<div class="card-footer">
-						<small class="text-muted">Last</small>
-					</div>
-				</div>
+				@endforeach
 			</div>
 		</div>
 	</div>
 	
 </div>
+{{-- <script>
+	$(document).ready(function() {
+		setTimeout(refrescar, 10000);
+	});
+	function refrescar()
+	{
+		location.reload();
+		// $()
+	}
+</script> --}}
+{{-- El de arriba es un codigo para recargar la pagina cada 10 seg --}}
 
 @endsection

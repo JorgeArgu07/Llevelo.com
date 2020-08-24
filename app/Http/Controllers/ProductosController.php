@@ -14,9 +14,19 @@ class ProductosController extends Controller
         //dd($request);
 
         
-        $pto = DB::table('productos')->where('id','=',$val)->get();
 
-        //dd($val);
+        $pto=DB::table('productos')
+        ->where('productos.id','=',$val)
+        ->select('productos.producto','productos.precio','productos.detalles','productos.ruta_img','productos.visitas')
+        ->get();
+        $v=$pto[0]->visitas + 1;
+        // dd($v);
+        // Actializar vista
+        $update = DB::table('productos')->where('productos.id',$val)->update(['visitas'=>$v]);
+        
+
+        // dd($val);
+
     	return view('productos',compact('pto'));
     }
 

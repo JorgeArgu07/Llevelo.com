@@ -65,9 +65,11 @@ Route::post('/setEstadoVendido', 'ProductoController@setEstadoVendido');
 Route::get('/getInfoComprador', 'PersonaController@getInfoComprador');
 
 Route::get('/','Index@inicio');
+
 // Route::get('/buscar','Index@buscar');
 
-// Route::post('/categorias','CategoriasController@ViewCategorias');
+
+
 Route::get('/categorias','CategoriasController@ViewCategorias');
 
 Route::get('/productos','ProductosController@ViewProductos');
@@ -75,3 +77,4 @@ Route::get('/productos','ProductosController@ViewProductos');
 // Route::get('/productos','CategoriasController@ViewProductos');
 
 
+Route::get('/destacados','DestacadosController@ViewDestacados');

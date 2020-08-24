@@ -35,37 +35,15 @@
 		margin-bottom: 50px;
 		width:height: 
 	}
-	.btn{
-        border-radius: 20px;
-    }
-	.btn-success{
-        background-color: #39d393;
-        border-color: #39d393;   
-    }
-	.btn-success:hover{
-        background-color: #36c98c;
-        border-color: #36c98c;
-    }
-	.btn-warning{
-        background-color: #eeb729;
-        border-color: #eeb729;
-        color: white;
-    }
 </style>
 @endsection
 
+@section('modulos')
+{{-- Aqui van los modulos del cliente y  --}}
+@endsection
+
 @section('contenido')
-@foreach($cat as $c)
-<div class="container">
-	<div class="row col-12 mb-3 contenedor">
-		<div class="col">
-			<h2>{{ $c->categoria }}</h2>
-		</div>	
-	</div>
-	<hr>
-</div>
-@endforeach
-@foreach($productxcat as $p)
+@foreach($visitas as $v)
 <div class="container">
 	<div class="row">
 		<div class="col-12">
@@ -74,17 +52,17 @@
 					<div class="container">
 						<div class="row">
 							<div class="col-md-3 col-sm-6">
-								<img src="{{ $p->ruta_img }}" class="card-img" alt="..." width="100%">
+								<img src="{{ $v->ruta_img }}" class="card-img" alt="..." width="100%">
 							</div>
 							<div class="col-md-6 col-sm-6">
-								<h3 class="card-title">{{ $p->producto }}</h3>
-								<p> <b>Condición: </b> {{ $p->condicion }}</p>
-								<p><b>Precio: </b>MXN${{ $p->precio }}</p>
+								<h3 class="card-title">{{ $v->producto }}</h3>
+								<p> <b>Condición: </b> {{ $v->condicion }}</p>
+								<p><b>Precio: </b>MXN${{ $v->precio }}</p>
 								<br>
 								<div class="row">
 									<div class="col-md-3 col-sm-1">
 										<form action="/productos" method="get" accept-charset="utf-8">
-											<button class="btn btn-success" name="id" value="{{ $p->id }}" href="/productos">Ver Producto</button>
+											<button class="btn btn-success" name="id" value="{{ $v->id }}" href="/productos">Ver Producto</button>
 										</form>
 									</div>
 									<div class="col-md-2 col-sm-1">
@@ -99,17 +77,9 @@
 		</div>
 	</div>
 </div>
-
-{{-- <script>
-	$(document).ready(function() {
-		setTimeout(refrescar, 10000);
-	});
-	function refrescar()
-	{
-		location.reload();
-		// $()
-	}
-</script> --}}
-
 @endforeach
+@endsection
+
+@section('javascrip')
+{{-- Aqui van los javascript --}}
 @endsection
