@@ -35,6 +35,8 @@ class Index extends Controller
 
     		array_push($produ, $s[$i]);
     	}
-    	return view('inicio',compact('product','produ'));
+
+        $destacados = DB::table('productos')->orderBy('productos.visitas','desc')->limit(5)->get();
+    	return view('inicio',compact('product','produ','destacados'));
     }
 }

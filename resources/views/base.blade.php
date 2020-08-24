@@ -58,7 +58,7 @@
 					</div>
 				</li>
 				<li class="nav-item">
-					<a style="margin-left: 20px;" class="nav-link" href="#">
+					<a style="margin-left: 20px;" class="nav-link" href="/destacados">
 						<img src="/img/estrella.png" alt="" width="20" height="20">
 						DESTACADOS
 					</a>

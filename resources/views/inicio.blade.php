@@ -45,22 +45,12 @@
 		<a href="/destacados">Ver más</a>
 	</div>
 	<div class="card-deck row justify-content-md-center">
+		@foreach($destacados as $d)
 		<div class="card ">
 {{-- Las imagenes deben tener una dimension de 340x340 --}}
-			<img src="/img/cubre.webp" class="imagen rounded imagenes">
+			<img src="{{ $d->ruta_img }}" class="imagen rounded imagenes">
 		</div>
-		<div class="card">
-			<img src="/img/xbox360.png" class="imagen rounded img-fluid imagenes">
-		</div>
-		<div class="card">
-			<img  src="/img/gta.jpg" class="imagen rounded img-fluid imagenes">
-		</div>
-		<div class="card">
-			<img  src="/img/far.jpg" class="imagen rounded img-fluid imagenes">
-		</div>
-		<div class="card">
-			<img  src="/img/left.jpg" class="imagen rounded img-fluid imagenes">
-		</div>
+		@endforeach
 	</div>
 </div>
 
@@ -109,7 +99,7 @@
 	</div>
 	
 </div>
-<script>
+{{-- <script>
 	$(document).ready(function() {
 		setTimeout(refrescar, 10000);
 	});
@@ -118,7 +108,7 @@
 		location.reload();
 		// $()
 	}
-</script>
+</script> --}}
 {{-- El de arriba es un codigo para recargar la pagina cada 10 seg --}}
 
 @endsection
