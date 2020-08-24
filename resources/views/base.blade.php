@@ -180,7 +180,7 @@
 
 @show
 
-
+@yield('javascript')
 <!-- <footer id="footer" class="navbar navbar-light bg-light" style="text-align: center;">
 	Copyright &copy; 2012-2013
 </footer>  -->

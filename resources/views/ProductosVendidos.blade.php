@@ -89,9 +89,9 @@
                                 <div class="col-md-3 col-sm-3 mt-2">
                                     <p class="card-text"> <b>Monto vendido: </b> MXN${{$producto->monto_venta}}</p>
                                     @if ($producto->estado == 'pendiente' )
-                                        <p class="card-text"> <b>Estado: </b> <b style="color: #39d393;" id="labelEstado" >Pendiente</b> </p>  
+                                        <p class="card-text"> <b>Estado: </b> <b style="color: #ff4f20;" id="labelEstado" >Pendiente</b> </p>  
                                     @else
-                                        <p class="card-text"> <b>Estado: </b> <b style="color: #ff4f20" id="labelEstado">Entregado</b> </p> 
+                                        <p class="card-text"> <b>Estado: </b> <b style="color: #39d393 " id="labelEstado">Entregado</b> </p> 
                                     @endif
                                 </div>
                                 <div class="col-md-3 col-sm-3 mt-2">
@@ -112,22 +112,16 @@
                                             <input type="text" name="id" hidden value="{!! $producto->id_producto !!}">
                                             <button class="dropdown-item" type="submit">Ver producto</button>
                                         </form>
-                                        
-                                        <form action="" id="formInfoComprador">
-                                            <input type="text" name="idComprador" id="idComprador" hidden value="{!! $producto->id_producto !!}">
-                                            <button id="infoComprador" class="dropdown-item" data-toggle="modal" data-target="#modalInfoComprador" type="submit">Ver contacto del comprador</button>
-                                        </form>
-                                        
-                                        
+                                        <button value="{!! $producto->comprador !!}" id="infoComprador" class="dropdown-item" data-toggle="modal" data-target="#modalInfoComprador" type="button">Ver contacto del comprador</button>
                                         @if ($producto->estado == 'pendiente')
-                                        <form action="/setEstadoProducto" method="POST">
+                                        <form action="/setEstadoVendido" method="POST">
                                             @csrf
                                             <input type="text" name="id" hidden value="{!! $producto->id_vendido !!}">
                                             <input type="text" name="estado" hidden value="{!! $producto->estado !!}">
                                             <button id="estadoProducto" class="dropdown-item" type="submit">Marcar como entregado</button>
                                         </form>
                                         @else
-                                        <form action="/setEstadoProducto" method="POST">
+                                        <form action="/setEstadoVendido" method="POST">
                                             @csrf
                                             <input type="text" name="id" hidden value="{!! $producto->id_vendido !!}">
                                             <input type="text" name="estado" hidden value="{!! $producto->estado !!}">
@@ -160,7 +154,8 @@
         </button>
       </div>
       <div class="modal-body" id="bodyInfo">
-        ...
+        
+        
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-danger" data-dismiss="modal">Volver</button>
@@ -173,21 +168,31 @@
 
 @section('javascript')
 {{-- Aqui van los javascript --}}
-<script>
+<script type="text/javascript">
+
+    console.log('hola')
 
     $('#infoComprador').click(function(){
        //we will send data and recive data fom our AjaxController
 
-        var id = $('#formInfoComprador').submit(function(){
-            return $('#idcomprador');
-        })
+        var id = $(this).val()
+        console.log(id);
 
        $.ajax({
           url:'/getInfoComprador',
           data:{'id': id },
           type:'get',
           success: function (response) {
-                $('#bodyInfo').html(response);
+              console.log(response)
+                $('#bodyInfo').html(
+                    '<i class="fas fa-user"></i> <b>Nombre: </b>'+response[0].nombre+' '+response[0].apellidoP+' '+response[0].apellidoM+
+                    '<br>'+
+                    '<br>'+
+                    '<i class="fas fa-phone"></i> <b>Telefono: </b>'+response[0].telefono+
+                    '<br>'+
+                    '<br>'+
+                    '<i class="fas fa-envelope"></i> <b>Correo: </b>'+response[0].correo
+                );
           },
           statusCode: {
              404: function() {

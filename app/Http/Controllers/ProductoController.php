@@ -107,13 +107,25 @@ class ProductoController extends Controller
         ->join('personas','productos.id_persona','=','personas.id')->where('personas.id',1)
         ->select('productos.id as id_producto', 'vendidos.id as id_vendido', 'productos.ruta_img as imagen', 'productos.producto as titulo', 'vendidos.created_at as fecha_venta', 'vendidos.cantidad as cantidad', 'vendidos.monto as monto_venta', 'vendidos.estado as estado','vendidos.id_comprador as comprador')
         ->get();
+        
 
         return view('ProductosVendidos')->with('productos',$productos);
     }
     public function setEstadoVendido(Request $r){
 
         $id = $r->input('id');
-        DB::table('vendidos')->where('id', $id)->update(['estado'=>'entregado']);
+
+        if($r->input('estado')=='pendiente')
+        {
+            DB::table('vendidos')->where('id', $id)->update(['estado'=>'entregado']);
+        }
+        else{
+            DB::table('vendidos')->where('id', $id)->update(['estado'=>'pendiente']);
+        }
+
+        
+
+        return redirect('/ProductosVendidos');
     }
 
 
