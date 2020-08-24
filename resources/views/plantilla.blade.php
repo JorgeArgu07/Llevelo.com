@@ -13,6 +13,6 @@
 {{-- Aqui va su codigo --}}
 @endsection
 
-@section('javascrip')
+@section('javascript')
 {{-- Aqui van los javascript --}}
 @endsection

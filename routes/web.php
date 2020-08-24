@@ -60,6 +60,9 @@ Route::post('setEstadoProducto','ProductoController@setEstadoProducto');
 Route::post('/updateProducto','ProductoController@updateProducto');
 Route::post('/ModificarProducto', 'ProductoController@viewModificarProducto');
 Route::get('/buscarProducto', 'ProductoController@buscarProducto');
+Route::get('/ProductosVendidos', 'ProductoController@viewProductosVendidos');
+Route::get('/setEstadoVendido', 'ProductoController@setEstadoVendido');
+Route::get('/getInfoComprador', 'PersonaController@getInfoComprador');
 
 Route::get('/','Index@inicio');
 // Route::get('/buscar','Index@buscar');

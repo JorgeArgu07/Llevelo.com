@@ -54,16 +54,19 @@
 @section('contenido')
 <div class="container">
         <div class="row mt-4">
-            <div class="col-md-9 col-sm-6 mr-3">
+            <div class="col-md-7 col-sm-4 mr-3">
                 <h3>Productos publicados</h3>
             </div>
-            <div class="col-md-2 col-sm-3 ml-5">
+            <div class="col-md-2 col-sm-4 ml-5 mr-3">
+                <a class="btn btn-danger" href="/ProductosVendidos"><i class="fas fa-box-open mr-2"></i>Productos vendidos</a>
+            </div>
+            <div class="col-md-2 col-sm-2">
                 <a class="btn btn-success" href="/PublicarProducto"><i class="fas fa-plus mr-2"></i>Publicar Producto</a>
             </div>
         </div>
         <hr>
         <div class="row">
-            <div class="col-4 col-sm-6">
+            <div class="col-md-4 col-sm-6">
                 <div class="input-group mb-2">
                     <div class="input-group-prepend">
                         <div class="input-group-text"><i class="fas fa-search"></i></div>

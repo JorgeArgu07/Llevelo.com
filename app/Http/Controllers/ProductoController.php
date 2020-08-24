@@ -100,6 +100,22 @@ class ProductoController extends Controller
 
         return redirect('/ProductosPublicados');
     }
+    public function viewProductosVendidos(){
+
+        $productos = DB::table('vendidos')
+        ->join('productos', 'vendidos.id_producto','=','productos.id')
+        ->join('personas','productos.id_persona','=','personas.id')->where('personas.id',1)
+        ->select('productos.id as id_producto', 'vendidos.id as id_vendido', 'productos.ruta_img as imagen', 'productos.producto as titulo', 'vendidos.created_at as fecha_venta', 'vendidos.cantidad as cantidad', 'vendidos.monto as monto_venta', 'vendidos.estado as estado','vendidos.id_comprador as comprador')
+        ->get();
+
+        return view('ProductosVendidos')->with('productos',$productos);
+    }
+    public function setEstadoVendido(Request $r){
+
+        $id = $r->input('id');
+        DB::table('vendidos')->where('id', $id)->update(['estado'=>'entregado']);
+    }
+
 
     public function buscarProducto(Request $r){
         if($r->ajax()){
@@ -183,4 +199,5 @@ class ProductoController extends Controller
         return Response($output);
 
     }
+    
 }

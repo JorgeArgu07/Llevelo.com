@@ -144,12 +144,16 @@
 						FAVORITOS
 					</a>
 				</li> --}}
+				@guest
+
+				@else
 				<li class="nav-item">
 					<a class="nav-link" href="/ProductosPublicados">
 						<i class="fas fa-archive"></i>
 						ADMINISTRADOR DE PRODUCTOS
 					</a>
 				</li>
+				@endguest
 				@section('modulos')
 				@show
 			</ul>
