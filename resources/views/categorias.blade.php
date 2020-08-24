@@ -69,9 +69,10 @@
 							<form action="/producto" method="get" accept-charset="utf-8">
 								<button class="btn btnproduct rounded-pill text-light" name="subject" value="{{ $pxc->id }}" href="/producto">Ver Producto</button>
 							</form>
-						<input type="hidden" class="id" value="{{$pxc->id}}" name="ids">  </td>
-							<button value="" type="button" id="editar" name="editar" class="btn btn-warning float-right btn-editar cantidad id_producto precio " style="height:35px" >Añadir al carrito</button> 
-							
+							<div class="col-md-2 col-sm-1">
+							<input type="hidden" class="id" value="{{$pxc->id}}" name="ids">  
+    						<a id="editar" name="editar" class="btn btn-warning  btn-editar producto cantidad precio " style="height:35px" >Añadir al carrito</a> 
+							</div>
 						</div>
 					</div>
 				</div>

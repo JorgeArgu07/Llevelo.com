@@ -21,6 +21,11 @@ class CategoriasController extends Controller
         $productxcat = DB::table('productos')
         ->where([['categorias.id','=',$numero], ['estado','=','activo']])
         ->join('categorias','categorias.id','=','productos.id_categoria')
+        ->select('productos.id','productos.ruta_img','productos.cantidad','productos.precio', 'productos.producto')
+        ->get();
+        
+        $prod = DB::table('productos')    
+        ->select ('productos.precio', 'productos.cantidad','productos.id')
         ->get();
 
         $cat=DB::table('categorias')
@@ -29,7 +34,7 @@ class CategoriasController extends Controller
         ->get();
         // dd($productxcat,$cat);
         // dd($cat);
-        return view('categorias',compact('productxcat','cat','pro'));
+        return view('categorias',compact('productxcat','cat','prod'));
 
     }
 
@@ -46,7 +51,7 @@ class CategoriasController extends Controller
     }
     function productos(Request $request)
     {
-    $pro = Producto::all();
+    $prod = Producto::all();
     $personas = DB::table('carrito_producto')
                 ->select('productos.precio','productos.ruta_img' ,'carrito_producto.id','carrito_producto.precio','carrito_producto.cantidad' ,'productos.detalles')
                 ->join('productos', 'productos.id', '=', 'carrito_producto.id_producto')
@@ -62,6 +67,7 @@ class CategoriasController extends Controller
         $carro->precio = $producto->precio;
         $carro->cantidad = $producto->cantidad;
         $carro->id_producto = $producto->id;
+        $carro->producto = $producto->producto;
         $carro->save();
         \Session::flash('eliminado',$carro);
         return $carro;
