@@ -1,20 +1,7 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <!--JQuery-->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js"></script>
-    
-    <!--Bootstrap-->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-    <!--FontAwesome-->
-    <script src="https://kit.fontawesome.com/d4ba555f74.js" crossorigin="anonymous"></script>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>LLevelo - Productos Publicados</title>
-    
-    <style type="text/css">
+@extends('base')
+
+@section('css')
+<style type="text/css">
         .btn{
             border-radius: 20px;
         }
@@ -30,6 +17,10 @@
         .btn-danger{
             background-color: #ff4f20;
             border-color: #ff4f20;
+        }
+        .btn-danger:hover{
+            background-color: #e0461d;
+            border-color: #e0461d;
         }
         .input-group-text{
             background-color: #eeb729;
@@ -47,23 +38,32 @@
 
         }
         .card{
-            box-shadow: 3px 3px 5px lightgrey;
+            box-shadow: 3px 3px 5px grey;
         }
+        .dropdown-toggle::after { 
+            content: none; 
+        } 
+        
     </style>
-</head>
-<body>
-    
-    <div class="container">
-        <div class="row mt-3">
-            <div class="col-10"><h3>Productos publicados</h3></div>
-            <div class="col-1">
-                <button type="button" class="btn btn-success"><i class="fas fa-plus mr-2"></i>Publicar Producto</button>
-                 
+@endsection
+
+@section('modulos')
+{{-- Aqui van los modulos del cliente y  --}}
+@endsection
+
+@section('contenido')
+<div class="container">
+        <div class="row mt-4">
+            <div class="col-md-9 col-sm-6 mr-3">
+                <h3>Productos publicados</h3>
+            </div>
+            <div class="col-md-2 col-sm-3 ml-5">
+                <a class="btn btn-success" href="/PublicarProducto"><i class="fas fa-plus mr-2"></i>Publicar Producto</a>
             </div>
         </div>
         <hr>
         <div class="row">
-            <div class="col-4">
+            <div class="col-4 col-sm-6">
                 <div class="input-group mb-2">
                     <div class="input-group-prepend">
                         <div class="input-group-text"><i class="fas fa-search"></i></div>
@@ -73,64 +73,120 @@
             </div>
         </div>
         
-        <div class="row mt-3">
-            <div class="col">
-                <div class="card" id="Producto">
-                <div class="card-body">
-                    <div class="container">
-                        <div class="row">
-                            <div class="col-2 mt-1">
-                                <img src="img/fondo.jpg" width="100%" class="text-right">
-                            </div>
-                            <div class="col-4 mt-1">
-                                <h5 class="card-title mt-6">Chicle masticados</h5>
-                                <p class="card-text">Fecha de publicación: 20 jun.2019</p>
-                            </div>
-                            <div class="col-2 mt-4">
-                                <p class="card-text"> <b>Precio:</b> $50,000</p>
-                            </div>
-                            <div class="col-3 mt-2">
-                                <p class="card-text"> <b>Unidades:</b> 10</p>
-                                <p class="card-text"> <b>Vendidos:</b> 0</p>
-                            </div>
-                           
-                            <div class="col-1 mt-4">
-                                <div class="dropdown">
-                                    <button class="btn dropdown btn-warning" type="button" id="dropdownOpciones" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        @foreach($productos as $producto)
+        <div id="listaProductos">
+            <div class="row mt-3">
+                <div class="col">
+                    <div class="card mt-2" id="Producto">
+                    <div class="card-body">
+                        <div class="container">
+                            <div class="row">
+                                <div class="col-2 col-sm-2 mt-1">
+                                    <img src="{!! $producto->ruta_img !!}" width="80%" class="text-right">
+                                </div>
+                                <div class="col-md-3 col-sm-4 mt-1">
+                                    <h5 class="card-title mt-6">{{$producto->producto}}</h5>
+                                    <p class="card-text"><b>Fecha de publicación: </b></p> {{$producto->created_at}}
+                                </div>
+                                <div class="col-md-3 col-sm-3 mt-2">
+                                    <p class="card-text"> <b>Precio: </b> MXN${{$producto->precio}}</p>
+                                    @if ($producto->estado == 'activo' )
+                                        <p class="card-text"> <b>Estado: </b> <b style="color: #39d393;" id="labelEstado" >Activo</b> </p>  
+                                    @else
+                                        <p class="card-text"> <b>Estado: </b> <b style="color: #ff4f20" id="labelEstado">Inactivo</b> </p> 
+                                    @endif
+                                </div>
+                                <div class="col-md-3 col-sm-3 mt-2">
+                                    <p class="card-text"> <b>Unidades: </b> {{$producto->cantidad}}</p>
+                                    
+                                </div>
+                            
+                                <div class="col-md-1 col-sm-5 mt-4">
+                                    
+                                    <button class="btn dropdown-toggle btn-warning" type="button" id="dropdownOpciones" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                     <i class="fas fa-bars"></i>
                                     </button>
                                     <div class="dropdown-menu" aria-labelledby="dropdownOpciones">
-                                        <button class="dropdown-item" type="button">Modificar Producto</button>
-                                        <button class="dropdown-item" type="button">Ver producto</button>
-                                        <button class="dropdown-item" type="button">Eliminar</button>
+                                    <!-- <a href="{{url('/updateProducto/'.$producto->id)}}" class="dropdown-item"></a> -->
+                                        <form action="/ModificarProducto" method="post">
+                                            @csrf
+                                            <input type="text" name="id" hidden value="{!! $producto->id !!}">
+                                            <button class="dropdown-item" type="submit">Modificar Producto</button>
+                                        </form>
+                                        <form action="/producto" method="get">
+                                            @csrf
+                                            <input type="text" name="id" hidden value="{!! $producto->id !!}">
+                                            <button class="dropdown-item" type="submit">Ver Producto</button>
+                                        </form>
+                                        @if ($producto->estado == 'inactivo')
+                                        <form action="/setEstadoProducto" method="POST">
+                                            @csrf
+                                            <input type="text" name="id" hidden value="{!! $producto->id !!}">
+                                            <input type="text" name="estado" hidden value="{!! $producto->estado !!}">
+                                            <button id="estadoProducto" class="dropdown-item" type="submit">Activar Producto</button>
+                                        </form>
+                                        @else
+                                        <form action="/setEstadoProducto" method="POST">
+                                            @csrf
+                                            <input type="text" name="id" hidden value="{!! $producto->id !!}">
+                                            <input type="text" name="estado" hidden value="{!! $producto->estado !!}">
+                                            <button id="estadoProducto" class="dropdown-item" type="submit">Desactivar Producto</button>
+                                        </form>
+
+                                        @endif
+                                        
+                                        
+                                        
                                     </div>
+                                    
                                 </div>
                             </div>
-                        </div>
-                    </div>                       
-                </div>
-            </div>                                       
+                        </div>                       
+                    </div>
+                </div>                                       
+                </div>    
             </div>
         </div>
+        @endforeach
     </div>
 
+@endsection
+
+@section('javascript')
     <script>
-        $('.dropdown').dropdown();
+        $('.dropdown-toggle').dropdown();
         
     </script>
-    <script>
-       $(document).ready(function(){
-            $("#InputBuscar").on("keyup", function() {
-                var value = $(this).val().toLowerCase();
-                $("#Producto .card-title").filter(function() {
-                    $("#Producto").toggle($(this).text().toLowerCase().indexOf(value) > -1)
-                });
+    
+    <script type="text/javascript">
+        $('#InputBuscar').on('keyup',function(){
+            $value=$(this).val();
+            $.ajax({
+                type : 'get',
+                url : '{{url("/buscarProducto")}}',
+                data:{'search':$value},
+                success:function(data){
+                    $('#listaProductos').html(data);
+                }
             });
-        });
+        })
     </script>
-
-</body>
-</html>
-
-
-
+    <!-- <script type="text/javascript">
+        $('#estadoProducto').on('keyup',function(){
+            $value=$(this).val();
+            $.ajax({
+                type : 'get',
+                url : '{{url("/setEstadoProducto")}}',
+                data:{'search':$value},
+                success:function(data){
+                    $('#labelEstado').html(data);
+                }
+            });
+        })
+    </script> -->
+    <script type="text/javascript">
+        $.ajaxSetup({ headers: { 'csrftoken' : '@csrf' } });
+    </script>
+    
+    
+@endsection

@@ -37,7 +37,7 @@
 </div>
 
 <div class="container">
-	<h4 class="margen col-12 " >Lo Mas Buscado</h4>
+	<h4 class="margen col-12">Lo Mas Buscado</h4>
 </div>
 
 <div class="container col-12 rounded contenedor bg-light" style=" padding-bottom: 10px; padding-top: 10px; width: 1170px;">
@@ -89,7 +89,7 @@
 
 {{-- Contenedores separados --}}
 
-<div class="container col-12 rounded contenedor" style=" padding-bottom: 10px; padding-top: 10px; width: 1170px; ">
+<div class="container col-12 rounded contenedor" style=" padding-bottom: 50px; padding-top: 10px; width: 1170px; ">
 
 	<div class="card-deck col-12 justify-content-md-center">
 		<div class="container col">

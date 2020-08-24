@@ -106,14 +106,17 @@ class PagoController extends Controller
         function carrito(Request $request){
         
             $personas = DB::table('carrito_producto')
-            ->select('carrito_producto.cantidad','productos.precio','productos.ruta_img' ,'carrito_producto.id','carrito_producto.total','carrito_producto.cantidad' ,'productos.detalles')
+            ->select('carrito_producto.cantidad','productos.precio','productos.ruta_img' ,'carrito_producto.id','carrito_producto.precio','carrito_producto.cantidad' ,'productos.detalles')
             ->join('productos', 'productos.id', '=', 'carrito_producto.id_producto')
+            ->where('id_persona', 1)
             ->get();
             $ventas = DB::table('carrito_producto')
             ->join('productos', 'productos.id', '=', 'carrito_producto.id_producto') 
             ->select(DB::raw('sum(productos.precio * carrito_producto.cantidad) as ventas'))
+            ->where('id_persona', 1)
             ->get();
-            $pagos = CarritoProducto::sum('total');
+            $pagos = CarritoProducto::sum('precio');
+               
             $p = Persona::all();
             $persona = CarritoProducto::where('id', $request->id)->get();
            # $personas = CarritoProducto::all();
@@ -139,85 +142,33 @@ class PagoController extends Controller
 {
 $productos = Producto::all();
 $personas = DB::table('carrito_producto')
-            ->select('productos.precio','productos.ruta_img' ,'carrito_producto.id','carrito_producto.total','carrito_producto.cantidad' ,'productos.detalles')
+            ->select('productos.precio','productos.ruta_img' ,'carrito_producto.id','carrito_producto.precio','carrito_producto.cantidad' ,'productos.detalles')
             ->join('productos', 'productos.id', '=', 'carrito_producto.id_producto')
             ->get();
-return view('prueba', compact("productos", "personas"));
+return view('pago', compact("productos", "personas"));
 }
 
 
 
 function añadiralcarro(Request $request){
     $carro = new CarritoProducto();
-    $carro->total = $request->total;
+    $carro->pago = $request->pago;
     $carro->cantidad = $request->cantidad;
     $carro->id_producto = $request->id_producto;
     $carro->save();
     \Session::flash('eliminado',$carro);
     return $carro;
-    
-    
- }
+    }
  
  function carro(Request $request){
     $edit = Producto::all();
- return $edit;
- }
-
- function tipodepago(Request $request)
- {
- $productos = Producto::all();
- $personas = DB::table('productos')
-             ->select('productos.id','productos.id_persona')
-             ->join('personas', 'productos.id_persona', '=', 'personas.id')
-             ->join('vendidos','vendidos.id_persona', '=','personas.id')
-             ->get();
-          
- return view('pago', compact("productos", "personas"));
- }
- 
- 
- 
- function añadirtipodepago(Request $request){
-     $carro = new vendidos();
-     $carro->total = $request->total;
-     $carro->cantidad = $request->cantidad;
-     $carro->id_persona = $request->id_persona;
-     $carro->save();
-     \Session::flash('eliminado',$carro);
-     return $carro;
-     
-     
-  }
-  function pagar(Request $request){
-    $edit = Producto::all();
     return $edit;
-  }
-  function agregarequipo(Request $request)
-  {
+ }
+
+
+
  
 
-    $carro = new Producto();
-    $carro->total = $request->total;
-    $carro->cantidad = $request->cantidad;
-    $carro->id_persona = $request->id_persona;
-    $carro->save();
-    $carro = Producto::all();
-    \Session::flash('equipos',$carro);
-    return \Redirect::back();
-
-
-
-
-}
-
-public function agregar()
-{
-   
-    $tipos = DB::table('productos')->get();
-    return view('pago', compact('productos'));
-}
-  
    
 
 }

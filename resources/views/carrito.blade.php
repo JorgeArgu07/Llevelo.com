@@ -157,7 +157,7 @@
 <h3 class="card-title">Carrito</h3>    
      
    
-@if(($persona))
+@if(($personas))
 <div class="card" style="width: 100%;" id="tabla1">
         <table class="table" >
  
