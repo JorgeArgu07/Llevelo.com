@@ -13,7 +13,7 @@ class ProductosController extends Controller
         $val = (int)$num;
         //dd($request);
 
-        
+    
 
         $pto=DB::table('productos')
         ->where('productos.id','=',$val)
@@ -23,10 +23,10 @@ class ProductosController extends Controller
         // dd($v);
         // Actializar vista
         $update = DB::table('productos')->where('productos.id',$val)->update(['visitas'=>$v]);
-        
-
         // dd($val);
+        $pto = DB::table('productos')->where('id','=',$val)->get();
 
+        //dd($val);
     	return view('productos',compact('pto'));
     }
 

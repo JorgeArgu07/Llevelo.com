@@ -1,4 +1,5 @@
 @extends('base')
+@extends('templates.master')
 
 @section('css')
 <style>
@@ -65,6 +66,7 @@
 	<hr>
 </div>
 @endforeach
+
 @foreach($productxcat as $p)
 <div class="container">
 	<div class="row">
@@ -113,3 +115,39 @@
 
 @endforeach
 @endsection
+
+@section('javascript')
+                <script type="text/javascript">
+                    $(document).ready(function() {
+                        
+                             //cargar productos
+            $('.btn-editar').on("click", function () {
+                var token = $('input[name=_token]').val();
+                var id = $(this).parent().parent().find('.id').val();
+            
+                $.ajax({
+                    url: "/agregarproductos",
+                    type: 'POST',
+                    datatype: 'json',
+                    data: {
+                        id: id,
+                        _token: token
+                    },
+                    success: function (response) {
+                        console.log(response);
+                       
+            
+                    }
+                });
+            
+            });
+                        
+                });
+                
+                        
+                    
+                       
+                        
+                </script>
+                
+            @stop

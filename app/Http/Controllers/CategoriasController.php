@@ -4,18 +4,28 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use App;
+use App\CarritoProducto;
+use App\Producto;
+use App\Carrito;
+use App\Persona;
 
 class CategoriasController extends Controller
 {
 
     function ViewCategorias(Request $request)
     {
+        $pro = Producto::all();
         $valor=$request->subject;
         $numero=(int)$valor;
         $productxcat = DB::table('productos')
         ->where([['categorias.id','=',$numero], ['estado','=','activo']])
         ->join('categorias','categorias.id','=','productos.id_categoria')
-        ->select('productos.ruta_img as imagen','productos.producto as titulo', 'productos.condicion as condicion','productos.precio as precio', 'productos.id as id_producto')
+        ->select('productos.id','productos.ruta_img','productos.cantidad','productos.precio', 'productos.producto')
+        ->get();
+        
+        $prod = DB::table('productos')    
+        ->select ('productos.precio', 'productos.cantidad','productos.id')
         ->get();
 
         $cat=DB::table('categorias')
@@ -24,14 +34,14 @@ class CategoriasController extends Controller
         ->get();
         // dd($productxcat,$cat);
         // dd($cat);
-        return view('categorias',compact('productxcat','cat'));
+        return view('categorias',compact('productxcat','cat','prod'));
 
     }
 
     function CatProductos(Request $request)
     {
     	
-    	//dd($datos);
+    	dd($datos);
 
     	// $productxcat = DB::table('productos')
     	// ->where('categorias.categoria','=',request()->id)
@@ -39,4 +49,35 @@ class CategoriasController extends Controller
     	// ->select('productos.producto','productos.precio','categorias.categoria')
     	// ->get();
     }
+    function productos(Request $request)
+    {
+    $prod = Producto::all();
+    $personas = DB::table('carrito_producto')
+                ->select('productos.precio','productos.ruta_img' ,'carrito_producto.id','carrito_producto.precio','carrito_producto.cantidad' ,'productos.detalles')
+                ->join('productos', 'productos.id', '=', 'carrito_producto.id_producto')
+                ->get();
+    return view('categorias', compact("pro", "personas"));
+    }
+    
+    
+    
+    function añadiralcarro(Request $request){
+        $producto = Producto::find($request->id);
+        $carro = new CarritoProducto();     
+        $carro->precio = $producto->precio;
+        $carro->cantidad = $producto->cantidad;
+        $carro->id_producto = $producto->id;
+        $carro->producto = $producto->producto;
+        $carro->save();
+        \Session::flash('eliminado',$carro);
+        return $carro;
+        
+     
+     }
+     
+     function carro(Request $request){
+        $edit = Producto::all();
+        return $edit;
+     }
+    
 }
