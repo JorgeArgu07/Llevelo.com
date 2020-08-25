@@ -87,19 +87,14 @@
 								<div class="row">
 									<div class="col-md-3 col-sm-1">
 										<form action="/productos" method="get" accept-charset="utf-8">
-											<button class="btn btn-success" name="id" value="{{ $p->id }}" href="/productos">Ver Producto</button>
+											<button class="btn btn-success" name="id" value="{{ $p->id }}">Ver Producto</button>
 										</form>
 									</div>
 									<div class="col-md-2 col-sm-1">
-										<a href="" class="btn btn-warning">Agregar al Carrito</a>
+										<input type="hidden" class="id" value="{{$p->id}}" name="ids">  
+    									<a id="editar" name="editar" class="btn btn-warning  btn-editar producto cantidad total " style="height:35px" >Añadir al carrito</a> 
 									</div>
-								</div>								
-
-							<div class="col-md-2 col-sm-1">
-							<input type="hidden" class="id" value="{{$p->id}}" name="ids">  
-    						<a id="editar" name="editar" class="btn btn-warning  btn-editar producto cantidad total " style="height:35px" >Añadir al carrito</a> 
-
-							</div>
+								</div>
 						</div>
 					</div>
 				</div>

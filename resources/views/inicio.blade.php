@@ -69,8 +69,8 @@
 				<div class="card col-sm carta" >
 					<img src="{{ $p->ruta_img }}" class="rounded img-fluid imagenes">
 					<hr>
-					<form action="/producto" method="get" accept-charset="utf-8" align="center">
-						<button style="margin-top: -15px; margin-bottom: 5px; width: 70px;"class="btn btnproduct rounded-pill btn-sm btn-lg text-light"  type="submit" value="{{ $p->id }}" name="subject">Ver</button>
+					<form action="/productos" id="id" name="id" method="get" accept-charset="utf-8" align="center">
+						<button style="margin-top: -15px; margin-bottom: 5px; width: 70px;"class="btn btnproduct rounded-pill btn-sm btn-lg text-light"  type="submit" value="{{ $p->id }}" name="id">Ver</button>
 					</form>
 				</div>
 				@endforeach
@@ -88,7 +88,7 @@
 						{{-- <p>{{ $pr->id}}</p> --}}
 						<img src="{{ $pr->ruta_img }}" class="rounded img-fluid imagenes">
 						<hr>
-						<form action="/producto" method="get" accept-charset="utf-8" align="center">
+						<form action="/productos" method="get" accept-charset="utf-8" align="center">
 							<input type="hidden" id="id" name="id" value="{{ $pr->id }}" class="form-control">
 							<button style="margin-top: -15px; margin-bottom: 5px; width: 70px;" class="btn btnproduct rounded-pill btn-sm btn-lg text-light"  type="submit" name="subject">Ver</button>
 						</form>
