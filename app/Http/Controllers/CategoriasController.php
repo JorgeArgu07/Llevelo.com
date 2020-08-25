@@ -21,7 +21,7 @@ class CategoriasController extends Controller
         $productxcat = DB::table('productos')
         ->where([['categorias.id','=',$numero], ['estado','=','activo']])
         ->join('categorias','categorias.id','=','productos.id_categoria')
-        ->select('productos.id','productos.ruta_img','productos.cantidad','productos.precio', 'productos.producto')
+        ->select('productos.id','productos.ruta_img','productos.cantidad','productos.precio', 'productos.producto', 'productos.condicion')
         ->get();
         
         $prod = DB::table('productos')    
