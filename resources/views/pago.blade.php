@@ -7,12 +7,12 @@
 @section('contenido')
 
 <div class="card" style="width:100%;">
-@foreach($prod as $p)
+@foreach($objeto as $p)
 <center>
 <input type="hidden" class="id" value="{{$p->id}}" name="ids">  
-<button type="button" id="editar" name="editar" class="btn btn-warning  btn-editar producto cantidad precio " style="height:35px" >Añadir al carrito</button> 
+<button  value="{" type="button" id="editar" name="editar" class="btn btn-warning  btn-editar producto cantidad precio " style="height:35px" >Pagar</button> 
 <center>
-  @endforeach
+@endforeach
 
 </div>
 @endsection

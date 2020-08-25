@@ -71,7 +71,7 @@
 							</form>
 							<div class="col-md-2 col-sm-1">
 							<input type="hidden" class="id" value="{{$pxc->id}}" name="ids">  
-    						<a id="editar" name="editar" class="btn btn-warning  btn-editar producto cantidad precio " style="height:35px" >Añadir al carrito</a> 
+    						<a id="editar" name="editar" class="btn btn-warning  btn-editar producto cantidad total " style="height:35px" >Añadir al carrito</a> 
 							</div>
 						</div>
 					</div>
