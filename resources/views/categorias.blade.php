@@ -75,6 +75,7 @@
 				<div class="card-body">
 					<div class="container">
 						<div class="row">
+
 							<div class="col-md-3 col-sm-6">
 								<img src="{{ $p->ruta_img }}" class="card-img" alt="..." width="100%">
 							</div>
@@ -93,6 +94,11 @@
 										<a href="" class="btn btn-warning">Agregar al Carrito</a>
 									</div>
 								</div>								
+
+							<div class="col-md-2 col-sm-1">
+							<input type="hidden" class="id" value="{{$p->id}}" name="ids">  
+    						<a id="editar" name="editar" class="btn btn-warning  btn-editar producto cantidad total " style="height:35px" >Añadir al carrito</a> 
+
 							</div>
 						</div>
 					</div>

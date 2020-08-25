@@ -53,7 +53,7 @@ class CategoriasController extends Controller
     {
     $prod = Producto::all();
     $personas = DB::table('carrito_producto')
-                ->select('productos.precio','productos.ruta_img' ,'carrito_producto.id','carrito_producto.precio','carrito_producto.cantidad' ,'productos.detalles')
+                ->select('productos.precio','productos.ruta_img' ,'carrito_producto.id','carrito_producto.total','carrito_producto.cantidad' ,'productos.detalles')
                 ->join('productos', 'productos.id', '=', 'carrito_producto.id_producto')
                 ->get();
     return view('categorias', compact("pro", "personas"));
@@ -64,7 +64,7 @@ class CategoriasController extends Controller
     function añadiralcarro(Request $request){
         $producto = Producto::find($request->id);
         $carro = new CarritoProducto();     
-        $carro->precio = $producto->precio;
+        $carro->total = $producto->precio;
         $carro->cantidad = $producto->cantidad;
         $carro->id_producto = $producto->id;
         $carro->producto = $producto->producto;

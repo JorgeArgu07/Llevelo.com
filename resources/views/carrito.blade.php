@@ -49,7 +49,7 @@
 <h3 class="card-title">Carrito</h3>    
      
    
-@if(($c))
+@if(($personas))
 <div class="card" style="width: 100%;" id="tabla1">
         <table class="table" >
  
@@ -85,7 +85,7 @@
     <center>
     <button type="button"  id="eliminar"  class="btn btn-primary eliminar" style=" background-color: red; border: 0px;">Vaciar</button>
 <center>
-
+<br>
 
 </div>
 
@@ -124,6 +124,30 @@
             @section('javascript')
                 <script type="text/javascript">
                     $(document).ready(function() {
+                                      
+                             //Carga cantidad
+            $('.btn-pagar').on("click", function () {
+                var token = $('input[name=_token]').val();
+                var id = $(this).parent().parent().find('.id').val();
+            
+                $.ajax({
+                    url: "/agregarpago",
+                    type: 'POST',
+                    datatype: 'json',
+                    data: {
+                        id: id,
+                        _token: token
+                    },
+                    success: function (response) {
+                        console.log(response);
+                        location.href='/';
+                       
+            
+                    }
+                });
+                      
+                     
+                });
                         
                              //Carga cantidad
             $('.btn-editar').on("click", function () {
