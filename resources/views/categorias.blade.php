@@ -70,7 +70,7 @@
 @foreach($productxcat as $p)
 <div class="container">
 	<div class="row">
-		<div class="col-12">
+		<div class="col-12 mb-4">
 			<div class="card">
 				<div class="card-body">
 					<div class="container">
@@ -85,6 +85,7 @@
 								<p><b>Precio: </b>MXN${{ $p->precio }}</p>
 								<br>
 								<div class="row">
+									@guest
 									<div class="col-md-3 col-sm-1">
 										<form action="/productos" method="get" accept-charset="utf-8">
 											<button class="btn btn-success" name="id" value="{{ $p->id }}">Ver Producto</button>
@@ -92,8 +93,23 @@
 									</div>
 									<div class="col-md-2 col-sm-1">
 										<input type="hidden" class="id" value="{{$p->id}}" name="ids">  
-    									<a id="editar" name="editar" class="btn btn-warning  btn-editar producto cantidad total " style="height:35px" >Añadir al carrito</a> 
+    									<a id="editar" name="editar" class="btn btn-warning disabled btn-editar producto cantidad total " style="height:35px; color: white" >Añadir al carrito</a> 
 									</div>
+									<br>
+									<br>	
+									<b>*Inicia sesión o registrate para poder comprar este producto</b>
+									@else
+									<div class="col-md-3 col-sm-1">
+										<form action="/productos" method="get" accept-charset="utf-8">
+											<button class="btn btn-success" name="id" value="{{ $p->id }}">Ver Producto</button>
+										</form>
+									</div>
+									<div class="col-md-2 col-sm-1">
+										<input type="hidden" class="id" value="{{$p->id}}" name="ids">  
+    									<a id="editar" name="editar" class="btn btn-warning  btn-editar producto cantidad total " style="height:35px; color: white" >Añadir al carrito</a> 
+									</div>
+									@endguest	
+									
 								</div>
 						</div>
 					</div>

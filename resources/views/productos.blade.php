@@ -19,6 +19,9 @@
         border-color: #eeb729;
         color: white;
     }
+    .btn-warning:hover{
+        color: white;
+    }
 	
 </style>
 @endsection
@@ -44,9 +47,17 @@
 								<p> <b>Condición: </b> {{ $p->condicion }}</p>
 								<p> <b>Descripcion: </b> {{ $p->detalles }}</p>
 								<p><b>Precio: </b>MXN${{ $p->precio }}</p>
-								<br>
-								<a href="" class="btn btn-success mr-3">Comprar</a>
-								<a href="" class="btn btn-warning">Agregar al Carrito</a>
+                                <br>
+                                @guest
+                                <a href="" class="btn btn-success mr-3 disabled">Comprar</a>
+                                <a href="" class="btn btn-warning disabled">Agregar al Carrito</a>
+                                <br>
+                                <br>
+								<b>*Inicia sesión o registrate para poder comprar este producto</b>
+                                @else
+                                <a href="" class="btn btn-success mr-3">Comprar</a>
+                                <a href="" class="btn btn-warning">Agregar al Carrito</a>
+                                @endguest
 							</div>
 						</div>
 					</div>

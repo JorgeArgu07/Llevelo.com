@@ -96,6 +96,18 @@ body {
 .login-form .bottom-action {
 	font-size: 14px;
 }
+.btn{
+	border-radius: 20px;
+}
+.btn-success{
+	background-color: #39d393;
+	border-color: #39d393;
+	
+}
+.btn-success:hover{
+	background-color: #36c98c;
+	border-color: #36c98c;
+}
 </style>
 
 <style>
