@@ -65,7 +65,7 @@
             </div>
         </div>
         <hr>
-        <div class="row">
+        <!-- <div class="row">
             <div class="col-md-4 col-sm-6">
                 <div class="input-group mb-2">
                     <div class="input-group-prepend">
@@ -74,7 +74,7 @@
                     <input type="text" class="form-control" id="InputBuscar" placeholder="Buscar productos">
                 </div>
             </div>
-        </div>
+        </div> -->
         
         @foreach($productos as $producto)
         <div id="listaProductos">

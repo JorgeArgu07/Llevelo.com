@@ -95,26 +95,45 @@
 					</a>
 					<div class="dropdown-menu " aria-labelledby="navbarDropdown">
 						<form action="/categorias" method="get" accept-charset="utf-8">
-
-							<button class="dropdown-item" type="submit" name="subject" value="1"><img src="/img/camiseta.png" class="iconos">Ropa</button>
+							<button class="dropdown-item" type="submit" name="subject" value="1"><img src="/img/vestido.png" class="iconos">Ropa</button>
+						</form>
+						<form action="/categorias" method="get" accept-charset="utf-8">
 							<button class="dropdown-item" type="submit" name="subject" value="2"><img src="/img/telefonia.png" class="iconos">Telefonia</button>
+						</form>
+						<form action="/categorias" method="get" accept-charset="utf-8">
 							<button class="dropdown-item" type="submit" name="subject" value="3"><img src="/img/pc.png" class="iconos">Informatica</button>
+						</form>
+						<form action="/categorias" method="get" accept-charset="utf-8">
 							<button class="dropdown-item" type="submit" name="subject" value="4"><img src="/img/altavoz.png" class="iconos">Electronica</button>
+						</form>
+						<form action="/categorias" method="get" accept-charset="utf-8">
 							<button class="dropdown-item" type="submit" name="subject" value="5"><img src="/img/limpiar.png" class="iconos">Casa y Electrodomesticos</button>
+						</form>
+						<form action="/categorias" method="get" accept-charset="utf-8">
 							<button class="dropdown-item" type="submit" name="subject" value="6"><img src="/img/nino.png" class="iconos">Juguetes Infantiles</button>
+						</form>
+						<form action="/categorias" method="get" accept-charset="utf-8">
 							<button class="dropdown-item" type="submit" name="subject" value="7"><img src="/img/deporte.png" class="iconos">Deporte</button>
+						</form>
+						<form action="/categorias" method="get" accept-charset="utf-8">
 							<button class="dropdown-item" type="submit" name="subject" value="8"><img src="/img/perfume.png" class="iconos">Belleza y Perfumeria</button>
+						</form>
+						<form action="/categorias" method="get" accept-charset="utf-8">
 							<button class="dropdown-item" type="submit" name="subject" value="9"><img src="/img/llaves.png" class="iconos">Herramientas</button>
+						</form>
+						<form action="/categorias" method="get" accept-charset="utf-8">
 							<button class="dropdown-item" type="submit" name="subject" value="10"><img src="/img/llanta.png" class="iconos">Automovil</button>
+						</form>
+						<form action="/categorias" method="get" accept-charset="utf-8">
 							<button class="dropdown-item" type="submit" name="subject" value="11"><img src="/img/lapiz.png" class="iconos">Escolar</button>
-
+						</form>
+						<form action="/categorias" method="get" accept-charset="utf-8">
 							<button class="dropdown-item" type="submit" name="subject" value="12"><img src="/img/hospital.png" class="iconos">Farmacia</button>
 						</form>
 					</div>
 				</li>
 				<li class="nav-item">
-
-					<a style="margin-left: 20px;" class="nav-link" href="/destacados">
+					<a style="margin-left: 20px;" class="nav-link" href="#">
 						<i class="fas fa-star"></i>
 						DESTACADOS
 					</a>
@@ -161,16 +180,11 @@
 
 @show
 
-
 @yield('javascript')
 <!-- <footer id="footer" class="navbar navbar-light bg-light" style="text-align: center;">
 	Copyright &copy; 2012-2013
 </footer>  -->
 <!-- <footer class="footer mt-auto py-3">
-{{-- <footer class="navbar navbar-light bg-light" style="text-align: center;">
-	Copyright &copy; 2012-2013
-</footer> --}}
-{{-- <footer class="footer mt-auto py-3">
 	<div class="container">
 		<span class="text-muted">Place sticky footer content here.</span>
 	</div>

@@ -15,6 +15,7 @@ class CategoriasController extends Controller
         $productxcat = DB::table('productos')
         ->where([['categorias.id','=',$numero], ['estado','=','activo']])
         ->join('categorias','categorias.id','=','productos.id_categoria')
+        ->select('productos.ruta_img as imagen','productos.producto as titulo', 'productos.condicion as condicion','productos.precio as precio', 'productos.id as id_producto')
         ->get();
 
         $cat=DB::table('categorias')
@@ -30,7 +31,7 @@ class CategoriasController extends Controller
     function CatProductos(Request $request)
     {
     	
-    	dd($datos);
+    	//dd($datos);
 
     	// $productxcat = DB::table('productos')
     	// ->where('categorias.categoria','=',request()->id)

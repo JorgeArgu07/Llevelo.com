@@ -17,7 +17,7 @@ class ProductosController extends Controller
 
         $pto=DB::table('productos')
         ->where('productos.id','=',$val)
-        ->select('productos.producto','productos.precio','productos.detalles','productos.ruta_img','productos.visitas')
+        ->select('productos.producto','productos.precio','productos.detalles','productos.ruta_img','productos.visitas', 'productos.condicion')
         ->get();
         $v=$pto[0]->visitas + 1;
         // dd($v);
