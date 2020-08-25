@@ -19,4 +19,9 @@ Route::get('/', function () {
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/home', 'HomeController@index')->name('ho
+me');
+route::get('/buscados', 'buscados@vistaMasbuscados');
+route::get('/pedidos', 'controllerpedidos@masPedidos');
+route::get('/consulta','controllerpedidos@consulta');
+route::get('/productos', 'controllerproductos@masProductos');
