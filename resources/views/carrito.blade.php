@@ -58,7 +58,7 @@
     <tr>
     <input type="hidden" class="id" value="{{$producto->id}}" name="ids"> 
     <th><button type="button" class="btn btn-primary btn-eliminar" id="eliminar" data-toggle="modal" data-target="#exampleModalLong" style=" background-color: red; border: 0px;"><i class="far fa-trash-alt" style="color: white;"></i></th>
-    <th> <img class="lib-img-show" src="img/{{$producto->ruta_img}}" value="{{$producto->ruta_img}}" style="width:150px"> </th>
+    <th> <img class="lib-img-show" src="{{$producto->ruta_img}}" value="{{$producto->ruta_img}}" style="width:150px"> </th>
     <th scope="col"><h5>{{$producto->producto}}</h5>
       <th scope="col" style="width:1000px"><p>{{$producto->detalles}}</p> <br>
      <h4> ${{$producto->precio}} MXN</h4> </div>

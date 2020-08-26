@@ -56,7 +56,11 @@
 								<b>*Inicia sesión o registrate para poder comprar este producto</b>
                                 @else
                                 <a href="" class="btn btn-success mr-3">Comprar</a>
-                                <a href="" class="btn btn-warning">Agregar al Carrito</a>
+                                <div class="col-md-2 col-sm-1">
+									<input type="hidden" class="id" value="{{$p->id}}" name="ids">  
+    								<a id="editar" name="editar" class="btn btn-warning  btn-editar producto cantidad total " style="height:35px; color: white" >Añadir al carrito</a> 
+								</div>
+                                
                                 @endguest
 							</div>
 						</div>
@@ -100,7 +104,7 @@
                     },
                     success: function (response) {
                         console.log(response);
-                        location.href='/productos';
+                        
             
                     }
                 });
@@ -216,6 +220,34 @@
                     
                        
                         
+                </script>
+                <script type="text/javascript">
+                    $(document).ready(function() {
+                        
+                             //cargar productos
+            $('.btn-editar').on("click", function () {
+                var token = $('input[name=_token]').val();
+                var id = $(this).parent().parent().find('.id').val();
+            
+                $.ajax({
+                    url: "/agregarproductos",
+                    type: 'POST',
+                    datatype: 'json',
+                    data: {
+                        id: id,
+                        _token: token
+                    },
+                    success: function (response) {
+                        console.log(response);
+                       
+            
+                    }
+                });
+            
+            });
+                        
+                });
+                                   
                 </script>
                 
             @stop
