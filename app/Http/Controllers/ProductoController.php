@@ -11,9 +11,16 @@ use Illuminate\Support\Facades\Storage;
 
 class ProductoController extends Controller
 {
+
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+    
     public function viewProductosPublicadosUsuario(){
 
         $productos = DB::table('productos')->where('id_persona', 1)->get();
+        //$productos = 0;
 
         return view('ProductosPublicados')->with('productos',$productos);
     }

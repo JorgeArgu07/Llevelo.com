@@ -59,7 +59,7 @@
 <div class="container">
         <div class="row mt-4">
             <div class="col-md-7 col-sm-6 mr-3">
-                <h3>Productos vendidos</h3>
+                <h5 class="display-4">Productos vendidos</h5>
             </div>
         </div>
         <hr>
@@ -73,81 +73,91 @@
                 </div>
             </div>
         </div> -->
-        <ul id="listaProductos" >
-            @foreach($productos as $producto)
-            <li>
-                <div>
-                    <div class="row mt-3">
-                        <div class="col">
-                            <div class="card mt-2" id="Producto">
-                            <div class="card-body">
-                                <div class="container">
-                                    <div class="row">
-                                        <div class="col-2 col-sm-2 mt-1">
-                                            <img src="{!! $producto->imagen !!}" width="80%" class="text-right">
-                                        </div>
-                                        <div class="col-md-3 col-sm-4 mt-1">
-                                            <h5 class="card-title mt-6">{{$producto->titulo}}</h5>
-                                            <p class="card-text"><b>Fecha de publicación: </b></p> {{$producto->fecha_venta}}
-                                        </div>
-                                        <div class="col-md-3 col-sm-3 mt-2">
-                                            <p class="card-text"> <b>Monto vendido: </b> MXN${{$producto->monto_venta}}</p>
-                                            @if ($producto->estado == 'pendiente' )
-                                                <p class="card-text"> <b>Estado: </b> <b style="color: #ff4f20;" id="labelEstado" >Pendiente</b> </p>  
-                                            @else
-                                                <p class="card-text"> <b>Estado: </b> <b style="color: #39d393 " id="labelEstado">Entregado</b> </p> 
-                                            @endif
-                                        </div>
-                                        <div class="col-md-3 col-sm-3 mt-2">
-                                            <p class="card-text"> <b>Unidades vendidas: </b> {{$producto->cantidad}}</p>
-                                            
-                                        </div>
-                                    
-                                        <div class="col-md-1 col-sm-5 mt-4">
-                                            
-                                            <button class="btn dropdown-toggle btn-warning" type="button" id="dropdownOpciones" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                            <i class="fas fa-bars"></i>
-                                            </button>
-                                            <div class="dropdown-menu" aria-labelledby="dropdownOpciones">
-                                            
-                                                
-                                                <form action="/productos" method="get">
-                                                    @csrf
-                                                    <input type="text" name="id" hidden value="{!! $producto->id_producto !!}">
-                                                    <button class="dropdown-item" type="submit">Ver producto</button>
-                                                </form>
-                                                <button value="{!! $producto->comprador !!}" id="infoComprador" class="dropdown-item infoComprador" data-toggle="modal" data-target="#modalInfoComprador" type="button">Ver contacto del comprador</button>
-                                                @if ($producto->estado == 'pendiente')
-                                                <form action="/setEstadoVendido" method="POST">
-                                                    @csrf
-                                                    <input type="text" name="id" hidden value="{!! $producto->id_vendido !!}">
-                                                    <input type="text" name="estado" hidden value="{!! $producto->estado !!}">
-                                                    <button id="estadoProducto" class="dropdown-item" type="submit">Marcar como entregado</button>
-                                                </form>
+        @if(count($productos) == 0)
+        <div class="jumbotron">
+            <h1 class="display-4">Aún no has vendido ningun producto!</h1>
+            <hr class="my-4">
+            <p class="lead">Aun no tienes productos en venta, da clic en el botón de agregar producto para comenzar a vender tus productos.</p>
+        </div>
+
+        @else
+            <ul id="listaProductos" >
+                @foreach($productos as $producto)
+                <li>
+                    <div>
+                        <div class="row mt-3">
+                            <div class="col">
+                                <div class="card mt-2" id="Producto">
+                                <div class="card-body">
+                                    <div class="container">
+                                        <div class="row">
+                                            <div class="col-2 col-sm-2 mt-1">
+                                                <img src="{!! $producto->imagen !!}" width="80%" class="text-right">
+                                            </div>
+                                            <div class="col-md-3 col-sm-4 mt-1">
+                                                <h5 class="card-title mt-6">{{$producto->titulo}}</h5>
+                                                <p class="card-text"><b>Fecha de publicación: </b></p> {{$producto->fecha_venta}}
+                                            </div>
+                                            <div class="col-md-3 col-sm-3 mt-2">
+                                                <p class="card-text"> <b>Monto vendido: </b> MXN${{$producto->monto_venta}}</p>
+                                                @if ($producto->estado == 'pendiente' )
+                                                    <p class="card-text"> <b>Estado: </b> <b style="color: #ff4f20;" id="labelEstado" >Pendiente</b> </p>  
                                                 @else
-                                                <form action="/setEstadoVendido" method="POST">
-                                                    @csrf
-                                                    <input type="text" name="id" hidden value="{!! $producto->id_vendido !!}">
-                                                    <input type="text" name="estado" hidden value="{!! $producto->estado !!}">
-                                                    <button id="estadoProducto" class="dropdown-item" type="submit">Marcar como pendiente</button>
-                                                </form>
+                                                    <p class="card-text"> <b>Estado: </b> <b style="color: #39d393 " id="labelEstado">Entregado</b> </p> 
                                                 @endif
-                                                
-                                                
+                                            </div>
+                                            <div class="col-md-3 col-sm-3 mt-2">
+                                                <p class="card-text"> <b>Unidades vendidas: </b> {{$producto->cantidad}}</p>
                                                 
                                             </div>
-                                            
+                                        
+                                            <div class="col-md-1 col-sm-5 mt-4">
+                                                
+                                                <button class="btn dropdown-toggle btn-warning" type="button" id="dropdownOpciones" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                <i class="fas fa-bars"></i>
+                                                </button>
+                                                <div class="dropdown-menu" aria-labelledby="dropdownOpciones">
+                                                
+                                                    
+                                                    <form action="/productos" method="get">
+                                                        @csrf
+                                                        <input type="text" name="id" hidden value="{!! $producto->id_producto !!}">
+                                                        <button class="dropdown-item" type="submit">Ver producto</button>
+                                                    </form>
+                                                    <button value="{!! $producto->comprador !!}" id="infoComprador" class="dropdown-item infoComprador" data-toggle="modal" data-target="#modalInfoComprador" type="button">Ver contacto del comprador</button>
+                                                    @if ($producto->estado == 'pendiente')
+                                                    <form action="/setEstadoVendido" method="POST">
+                                                        @csrf
+                                                        <input type="text" name="id" hidden value="{!! $producto->id_vendido !!}">
+                                                        <input type="text" name="estado" hidden value="{!! $producto->estado !!}">
+                                                        <button id="estadoProducto" class="dropdown-item" type="submit">Marcar como entregado</button>
+                                                    </form>
+                                                    @else
+                                                    <form action="/setEstadoVendido" method="POST">
+                                                        @csrf
+                                                        <input type="text" name="id" hidden value="{!! $producto->id_vendido !!}">
+                                                        <input type="text" name="estado" hidden value="{!! $producto->estado !!}">
+                                                        <button id="estadoProducto" class="dropdown-item" type="submit">Marcar como pendiente</button>
+                                                    </form>
+                                                    @endif
+                                                    
+                                                    
+                                                    
+                                                </div>
+                                                
+                                            </div>
                                         </div>
-                                    </div>
-                                </div>                       
-                            </div>
-                        </div>                                       
-                        </div>    
+                                    </div>                       
+                                </div>
+                            </div>                                       
+                            </div>    
+                        </div>
                     </div>
-                </div>
-            </li>   
-            @endforeach
-        </ul>
+                </li>   
+                @endforeach
+            </ul>
+        @endif
+        
         
     </div>
     

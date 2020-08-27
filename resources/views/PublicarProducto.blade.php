@@ -30,9 +30,8 @@
 <div class="container">
     <div class="row mt-4">
         <div class="col-12 mr-3">
-                      
-            <h3>Publicar producto</h3>                           
-            <h5>Rellena el formulario con la información de tu producto.</h5>        
+            <h5 class="display-4">Publicar producto</h5>                    
+            <h5 class="lead"> Rellena el formulario con la información de tu producto.</h5>    
         </div>
     </div>
     <hr>
